@@ -102,69 +102,67 @@
     animation: fadeUp 0.8s 0.6s ease forwards; opacity: 0;
   }
 
-  /* ─── PHOTO STRIP ─── */
-  .photo-strip {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    height: 540px;
+  /* ─── FULL-WIDTH PHOTO BANNER ─── */
+  .photo-banner {
     position: relative;
+    height: 560px;
     overflow: hidden;
   }
 
-  .photo-pane {
-    position: relative;
-    overflow: hidden;
-  }
-
-  .photo-pane img {
+  .photo-banner img {
     width: 100%; height: 100%;
-    object-fit: cover;
+    object-fit: cover; object-position: center 30%;
     display: block;
-    transition: transform 0.7s ease;
-    filter: brightness(0.85) saturate(1.15);
+    filter: brightness(0.75) saturate(1.1);
+    transition: transform 8s ease;
   }
 
-  .photo-pane:hover img { transform: scale(1.05); }
+  .photo-banner:hover img { transform: scale(1.04); }
 
-  .photo-overlay {
+  .photo-banner-overlay {
     position: absolute; inset: 0;
-    background: linear-gradient(to top, rgba(10,5,15,0.65) 0%, transparent 55%);
+    background: linear-gradient(
+      to right,
+      rgba(10,5,15,0.7) 0%,
+      rgba(10,5,15,0.2) 50%,
+      rgba(10,5,15,0.05) 100%
+    );
   }
 
-  .photo-label {
-    position: absolute; bottom: 32px; left: 32px; z-index: 2;
+  .photo-banner-content {
+    position: absolute; top: 50%; left: 7%;
+    transform: translateY(-50%); z-index: 2;
+    max-width: 480px;
   }
 
-  .photo-label small {
-    display: block; font-size: 10px; letter-spacing: 3px;
+  .photo-banner-content .tag {
+    font-size: 10px; letter-spacing: 4px;
     text-transform: uppercase; color: var(--gold);
-    font-family: 'DM Sans', sans-serif; margin-bottom: 6px;
+    font-family: 'DM Sans', sans-serif;
+    border: 1px solid rgba(201,169,110,0.4);
+    display: inline-block; padding: 5px 16px;
+    border-radius: 20px; margin-bottom: 20px;
   }
 
-  .photo-label span {
+  .photo-banner-content h2 {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 30px; font-weight: 300; font-style: italic;
-    color: #fff; text-shadow: 0 2px 12px rgba(0,0,0,0.4);
-    display: block;
+    font-size: clamp(36px, 5vw, 64px);
+    font-weight: 300; line-height: 1.1; color: #fff;
+    text-shadow: 0 4px 24px rgba(0,0,0,0.3);
   }
 
-  .photo-strip-divider {
-    position: absolute; left: 50%; top: 0; bottom: 0; width: 2px;
-    background: linear-gradient(to bottom, transparent, var(--gold) 40%, var(--gold) 60%, transparent);
-    transform: translateX(-50%); z-index: 3;
+  .photo-banner-content h2 em {
+    font-style: italic; color: var(--gold-light); display: block;
   }
 
-  /* skeleton */
-  .photo-skeleton {
-    width: 100%; height: 100%; min-height: 300px;
-    background: linear-gradient(90deg, #1a0f1e 25%, #2a1535 50%, #1a0f1e 75%);
-    background-size: 200% 100%;
-    animation: shimmer 1.5s infinite;
+  .photo-banner-content p {
+    margin-top: 16px; font-size: 15px;
+    color: rgba(232,221,208,0.8); font-weight: 300; line-height: 1.7;
   }
 
-  @keyframes shimmer {
-    0% { background-position: 200% 0; }
-    100% { background-position: -200% 0; }
+  .photo-banner-line {
+    position: absolute; bottom: 0; left: 0; right: 0; height: 3px;
+    background: linear-gradient(90deg, var(--rose), var(--gold), transparent);
   }
 
   /* ─── BUTTONS ─── */
@@ -266,49 +264,72 @@
 
   .service-card p { font-size: 14px; color: var(--text-muted); line-height: 1.7; font-weight: 300; }
 
-  /* ─── GALLERY ─── */
+  /* ─── GALLERY / FEATURED PHOTO ─── */
   .gallery-section { background: var(--dark); padding: 100px 24px; }
 
-  .gallery-header {
-    display: flex; align-items: flex-end;
-    justify-content: space-between; margin-bottom: 48px;
-    flex-wrap: wrap; gap: 16px;
-  }
-
-  .gallery-grid {
+  .featured-photo-wrap {
     display: grid;
-    grid-template-columns: 1.4fr 1fr;
-    gap: 16px;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 0;
+    border-radius: 22px;
+    overflow: hidden;
+    border: 1px solid rgba(201,169,110,0.15);
+    min-height: 500px;
   }
 
-  .gallery-img {
-    border-radius: 18px; overflow: hidden;
-    position: relative; cursor: pointer;
+  .featured-photo-img {
+    position: relative; overflow: hidden;
   }
 
-  .gallery-img img {
+  .featured-photo-img img {
     width: 100%; height: 100%;
-    object-fit: cover; display: block;
-    min-height: 400px;
-    transition: transform 0.6s ease;
-    filter: brightness(0.9) saturate(1.1);
+    object-fit: cover; object-position: center 20%;
+    display: block; min-height: 500px;
+    transition: transform 0.7s ease;
+    filter: brightness(0.88) saturate(1.1);
   }
 
-  .gallery-img:hover img { transform: scale(1.04); }
+  .featured-photo-img:hover img { transform: scale(1.04); }
 
-  .gallery-img .img-caption {
-    position: absolute; bottom: 0; left: 0; right: 0;
-    background: linear-gradient(to top, rgba(10,5,15,0.8) 0%, transparent 100%);
-    padding: 40px 28px 24px;
+  .featured-photo-info {
+    background: linear-gradient(145deg, #1a0f1e, #110a18);
+    padding: 60px 48px;
+    display: flex; flex-direction: column; justify-content: center;
+    border-left: 1px solid rgba(201,169,110,0.1);
+  }
+
+  .featured-photo-info .tag {
+    font-size: 10px; letter-spacing: 4px; text-transform: uppercase;
+    color: var(--gold); font-weight: 500; margin-bottom: 20px;
+  }
+
+  .featured-photo-info h3 {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 22px; font-style: italic; color: #fff; font-weight: 300;
+    font-size: 40px; font-weight: 300; line-height: 1.2;
+    color: var(--text-light); margin-bottom: 20px;
   }
 
-  .gallery-img .img-caption small {
-    display: block; font-size: 10px; letter-spacing: 3px;
-    text-transform: uppercase; color: var(--gold);
-    font-family: 'DM Sans', sans-serif; font-style: normal;
-    margin-bottom: 6px;
+  .featured-photo-info h3 em { font-style: italic; color: var(--gold); }
+
+  .featured-photo-info p {
+    font-size: 14px; color: var(--text-muted);
+    line-height: 1.8; font-weight: 300; margin-bottom: 32px;
+  }
+
+  .feature-stat {
+    display: flex; gap: 32px; margin-bottom: 40px; flex-wrap: wrap;
+  }
+
+  .stat-item { text-align: left; }
+
+  .stat-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 36px; font-weight: 300; color: var(--gold); line-height: 1;
+  }
+
+  .stat-label {
+    font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
+    color: var(--text-muted); margin-top: 4px;
   }
 
   /* ─── OFFER ─── */
@@ -427,12 +448,14 @@
   }
 
   @media (max-width: 768px) {
-    .photo-strip { grid-template-columns: 1fr; height: auto; }
-    .photo-pane { height: 280px; }
+    .photo-banner { height: 420px; }
+    .photo-banner-content { left: 5%; right: 5%; max-width: 100%; }
+    .featured-photo-wrap { grid-template-columns: 1fr; }
+    .featured-photo-img img { min-height: 320px; }
+    .featured-photo-info { padding: 40px 28px; }
     .offer-inner { grid-template-columns: 1fr; padding: 44px 28px; }
     .location-grid { grid-template-columns: 1fr; }
     .services-header { flex-direction: column; align-items: flex-start; }
-    .gallery-grid { grid-template-columns: 1fr; }
     section { padding: 70px 20px; }
     .gallery-section { padding: 70px 20px; }
     .offer-section { padding: 0 20px 70px; }
@@ -462,25 +485,20 @@
   </div>
 </header>
 
-<!-- PHOTO STRIP — full-width cinematic dual photo -->
-<div class="photo-strip">
-  <div class="photo-pane" id="pane1">
-    <div class="photo-skeleton" style="height:540px"></div>
-    <div class="photo-overlay"></div>
-    <div class="photo-label">
-      <small>Our Specialty</small>
-      <span>Nail Care</span>
-    </div>
+<!-- FULL-WIDTH PHOTO BANNER -->
+<div class="photo-banner">
+  <img
+    src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?q=85&w=2070&auto=format&fit=crop"
+    alt="Luxury facial treatment at Opal Beauty Center"
+    loading="eager"
+  >
+  <div class="photo-banner-overlay"></div>
+  <div class="photo-banner-content">
+    <span class="tag">Premium Experience</span>
+    <h2>Where Beauty<br><em>Meets Ritual</em></h2>
+    <p>Indulge in world-class skincare and beauty treatments designed to restore your natural radiance.</p>
   </div>
-  <div class="photo-pane" id="pane2">
-    <div class="photo-skeleton" style="height:540px"></div>
-    <div class="photo-overlay"></div>
-    <div class="photo-label">
-      <small>Glow Treatment</small>
-      <span>Facial Therapy</span>
-    </div>
-  </div>
-  <div class="photo-strip-divider"></div>
+  <div class="photo-banner-line"></div>
 </div>
 
 <!-- SERVICES -->
@@ -513,30 +531,36 @@
   </div>
 </section>
 
-<!-- GALLERY — same two photos in a featured layout -->
+<!-- FEATURED PHOTO SECTION -->
 <section class="gallery-section">
   <div class="container">
-    <div class="gallery-header">
-      <div>
-        <div class="section-label">Our World</div>
-        <h2 class="section-title">Inside <em>Opal</em></h2>
+    <div class="featured-photo-wrap">
+      <div class="featured-photo-img">
+        <img
+          src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?q=85&w=1400&auto=format&fit=crop&crop=center"
+          alt="Luxury facial treatment at Opal Beauty Center"
+          loading="lazy"
+        >
       </div>
-      <a href="https://wa.me/97433041400" class="btn-outline">Book Your Visit</a>
-    </div>
-    <div class="gallery-grid">
-      <div class="gallery-img" id="galleryImg1">
-        <div class="photo-skeleton" style="min-height:420px"></div>
-        <div class="img-caption">
-          <small>Expert Hands</small>
-          Precision Nail Care
+      <div class="featured-photo-info">
+        <div class="tag">Our Signature</div>
+        <h3>Skin That<br><em>Glows Within</em></h3>
+        <p>Every facial treatment at Opal is a bespoke ritual — crafted for your skin type, your concerns, and your lifestyle. We use only premium-grade products for results you can see and feel.</p>
+        <div class="feature-stat">
+          <div class="stat-item">
+            <div class="stat-num">500+</div>
+            <div class="stat-label">Happy Clients</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-num">5★</div>
+            <div class="stat-label">Avg. Rating</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-num">3+</div>
+            <div class="stat-label">Years in Doha</div>
+          </div>
         </div>
-      </div>
-      <div class="gallery-img" id="galleryImg2">
-        <div class="photo-skeleton" style="min-height:420px"></div>
-        <div class="img-caption">
-          <small>Radiant Skin</small>
-          Luxury Facial Rituals
-        </div>
+        <a href="https://wa.me/97433041400" class="btn-primary">Book a Facial</a>
       </div>
     </div>
   </div>
@@ -630,48 +654,7 @@
   <p style="margin-top:12px">© 2026 Opal Beauty Center. All rights reserved.</p>
 </footer>
 
-<script>
-// ─── Load Unsplash photos via oEmbed (no API key required) ───
-const PHOTOS = [
-  { id: 'THnjMTXuFuk', pane: 'pane1', gallery: 'galleryImg1', alt: 'Nail care preparation in beauty salon' },
-  { id: 'u93nTfWqR9w', pane: 'pane2', gallery: 'galleryImg2', alt: 'Woman receiving luxury facial mask treatment' }
-];
 
-function injectImage(containerId, src, alt) {
-  const el = document.getElementById(containerId);
-  if (!el) return;
-  const skeleton = el.querySelector('.photo-skeleton');
-  const img = new Image();
-  img.src = src;
-  img.alt = alt;
-  img.style.cssText = 'width:100%;height:100%;object-fit:cover;display:block;min-height:300px;transition:transform 0.6s ease;filter:brightness(0.88) saturate(1.12);';
-  img.onload = () => { if (skeleton) skeleton.replaceWith(img); };
-}
 
-async function loadPhoto({ id, pane, gallery, alt }) {
-  try {
-    const res = await fetch(`https://unsplash.com/oembed?url=https://unsplash.com/photos/${id}`, {
-      headers: { 'Accept': 'application/json' }
-    });
-    if (!res.ok) throw new Error('oEmbed failed');
-    const data = await res.json();
-
-    // thumbnail_url from oEmbed — scale up by tweaking imgix params
-    let src = data.thumbnail_url || '';
-    // Upgrade dimensions
-    src = src
-      .replace(/[?&]w=\d+/, (m) => m[0] + 'w=1400')
-      .replace(/[?&]h=\d+/, (m) => m[0] + 'h=920');
-    if (!src.includes('w=')) src += (src.includes('?') ? '&' : '?') + 'w=1400&h=920&fit=crop&auto=format&q=85';
-
-    injectImage(pane, src, alt);
-    injectImage(gallery, src, alt);
-  } catch (err) {
-    console.warn('Photo load error:', id, err);
-  }
-}
-
-PHOTOS.forEach(loadPhoto);
-</script>
 </body>
 </html>
