@@ -1,236 +1,818 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <title>Milano by Danube Home | طريق سلوى - الدوحة | أثاث وديكور إيطالي</title>
-    <meta name="description" content="استكشف تشكيلة ميلانو الفاخرة من الأثاث، الأدوات الصحية، والديكور المنزلي في فرع طريق سلوى، الدوحة. جودة إيطالية وتصاميم عصرية لتجميل منزلك في قطر.">
-    <meta name="keywords" content="ميلانو دانوب هوم قطر, أثاث طريق سلوى, أدوات صحية الدوحة, Milano Danube Home Doha, أثاث منزلي قطر, مفروشات الدوحة">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Flash Trading Company | شركة فلاش للتجارة</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&family=Bebas+Neue&family=Montserrat:wght@300;400;700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #050d1a;
+    --deep: #0a1628;
+    --cyan: #00d4ff;
+    --cyan-dim: #0099bb;
+    --gold: #f5c842;
+    --white: #f0f4ff;
+    --muted: #7a8fa6;
+    --card-bg: #0d1e35;
+    --border: rgba(0,212,255,0.15);
+  }
 
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "HomeGoodsStore",
-      "name": "Milano by Danube Home - Salwa Road",
-      "image": "https://images.unsplash.com/photo-1556228453-efd6c1ff04f6",
-      "url": "https://gallyhassan91-art.github.io/opal-beauty/",
-      "telephone": "+97444365057",
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "Building 303, Street 340, Zone 56, Salwa Rd",
-        "addressLocality": "Doha",
-        "addressCountry": "QA"
-      },
-      "geo": {
-        "@type": "GeoCoordinates",
-        "latitude": 25.2571, 
-        "longitude": 51.4814
-      },
-      "openingHours": "Mo-Su 09:00-21:00"
-    }
-    </script>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
 
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
-    
-    <style>
-        :root {
-            --primary: #1a1a1a;
-            --gold: #c5a059;
-            --light-bg: #f9f9f9;
-            --white: #ffffff;
-            --whatsapp-green: #25D366;
-        }
+  html { scroll-behavior: smooth; }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: var(--navy);
+    color: var(--white);
+    font-family: 'Cairo', sans-serif;
+    overflow-x: hidden;
+    direction: rtl;
+  }
 
-        body {
-            font-family: 'Cairo', sans-serif;
-            background-color: var(--white);
-            color: var(--primary);
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
+  /* ── NOISE OVERLAY ── */
+  body::before {
+    content: '';
+    position: fixed; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none; z-index: 0; opacity: .6;
+  }
 
-        /* Navbar */
-        nav {
-            background: var(--white);
-            padding: 20px 5%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            border-bottom: 1px solid #eee;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-        .logo {
-            font-family: 'Playfair Display', serif;
-            font-size: 26px;
-            font-weight: bold;
-            color: var(--primary);
-            letter-spacing: 3px;
-            text-transform: uppercase;
-        }
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; width: 100%; z-index: 100;
+    padding: 18px 60px;
+    display: flex; align-items: center; justify-content: space-between;
+    background: rgba(5,13,26,0.85);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo { display: flex; align-items: center; gap: 14px; }
+  .logo-icon {
+    width: 44px; height: 44px;
+    background: linear-gradient(135deg, var(--cyan), var(--gold));
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Bebas Neue'; font-size: 22px; color: var(--navy);
+    animation: pulse 3s ease-in-out infinite;
+  }
+  @keyframes pulse { 0%,100%{box-shadow:0 0 0 0 rgba(0,212,255,.4)} 50%{box-shadow:0 0 0 12px rgba(0,212,255,0)} }
+  .logo-text { font-weight: 900; font-size: 18px; line-height: 1.1; }
+  .logo-text span { display: block; font-size: 11px; font-weight: 300; color: var(--cyan); letter-spacing: 3px; }
+  .nav-links { display: flex; gap: 32px; list-style: none; }
+  .nav-links a { color: var(--muted); text-decoration: none; font-size: 14px; font-weight: 600; transition: color .3s; }
+  .nav-links a:hover { color: var(--cyan); }
+  .nav-cta {
+    background: linear-gradient(135deg, var(--cyan), #0080ff);
+    color: var(--navy); padding: 10px 24px; border-radius: 6px;
+    font-weight: 700; font-size: 13px; text-decoration: none;
+    transition: transform .2s, box-shadow .2s;
+  }
+  .nav-cta:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,212,255,.35); }
 
-        /* Hero Section */
-        .hero {
-            height: 80vh;
-            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
-                        url('https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?q=80&w=2070');
-            background-size: cover;
-            background-position: center;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            color: var(--white);
-            text-align: center;
-            padding: 0 20px;
-        }
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: flex; align-items: center;
+    padding: 120px 60px 80px;
+    position: relative; overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse at 70% 50%, rgba(0,212,255,.08) 0%, transparent 60%),
+                radial-gradient(ellipse at 20% 80%, rgba(245,200,66,.05) 0%, transparent 50%),
+                linear-gradient(180deg, var(--navy) 0%, var(--deep) 100%);
+  }
+  .hero-grid {
+    position: absolute; inset: 0;
+    background-image: linear-gradient(var(--border) 1px, transparent 1px),
+                      linear-gradient(90deg, var(--border) 1px, transparent 1px);
+    background-size: 60px 60px;
+    mask-image: radial-gradient(ellipse at center, black 30%, transparent 80%);
+  }
+  .hero-content { position: relative; max-width: 680px; }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(0,212,255,.1); border: 1px solid var(--border);
+    padding: 6px 16px; border-radius: 100px; margin-bottom: 32px;
+    font-size: 12px; color: var(--cyan); letter-spacing: 2px; text-transform: uppercase;
+    animation: fadeInDown .8s ease both;
+  }
+  .badge-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--cyan); animation: blink 1.5s infinite; }
+  @keyframes blink { 0%,100%{opacity:1} 50%{opacity:.2} }
+  @keyframes fadeInDown { from{opacity:0;transform:translateY(-20px)} to{opacity:1;transform:translateY(0)} }
 
-        .hero h1 { font-size: clamp(2.5rem, 5vw, 4rem); margin-bottom: 15px; }
-        .hero p { font-size: clamp(1.1rem, 2vw, 1.5rem); max-width: 800px; margin-bottom: 35px; font-weight: 300; }
+  .hero h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(56px, 8vw, 96px);
+    line-height: .95;
+    letter-spacing: 2px;
+    animation: fadeInUp .9s .2s ease both;
+  }
+  @keyframes fadeInUp { from{opacity:0;transform:translateY(30px)} to{opacity:1;transform:translateY(0)} }
+  .hero h1 .accent { color: var(--cyan); display: block; }
+  .hero h1 .gold { color: var(--gold); }
 
-        /* Action Buttons */
-        .cta-container { display: flex; gap: 20px; flex-wrap: wrap; justify-content: center; }
-        .btn {
-            padding: 15px 45px;
-            border-radius: 5px;
-            text-decoration: none;
-            font-weight: bold;
-            transition: all 0.3s ease;
-            font-size: 1.1rem;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        .btn-call { background-color: var(--gold); color: var(--white); }
-        .btn-wa { background-color: var(--whatsapp-green); color: var(--white); }
-        .btn:hover { transform: translateY(-3px); box-shadow: 0 5px 15px rgba(0,0,0,0.2); opacity: 0.9; }
+  .hero-sub {
+    font-size: 17px; color: var(--muted); line-height: 1.8;
+    margin: 24px 0 40px;
+    animation: fadeInUp .9s .35s ease both;
+  }
 
-        /* Features Section */
-        .section { padding: 80px 5%; max-width: 1300px; margin: auto; }
-        .section-header { text-align: center; margin-bottom: 60px; }
-        .section-header h2 { font-size: 2.5rem; color: var(--primary); position: relative; padding-bottom: 15px; }
-        .section-header h2::after {
-            content: ''; width: 60px; height: 3px; background: var(--gold);
-            position: absolute; bottom: 0; left: 50%; transform: translateX(-50%);
-        }
+  .hero-btns { display: flex; gap: 16px; animation: fadeInUp .9s .5s ease both; }
+  .btn-primary {
+    background: linear-gradient(135deg, var(--cyan), #0080ff);
+    color: var(--navy); padding: 14px 36px; border-radius: 8px;
+    font-weight: 800; font-size: 15px; text-decoration: none;
+    transition: transform .2s, box-shadow .2s;
+  }
+  .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 12px 32px rgba(0,212,255,.4); }
+  .btn-outline {
+    border: 1.5px solid var(--border); color: var(--white);
+    padding: 14px 36px; border-radius: 8px; font-weight: 600;
+    font-size: 15px; text-decoration: none; transition: border-color .3s, background .3s;
+  }
+  .btn-outline:hover { border-color: var(--cyan); background: rgba(0,212,255,.07); }
 
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 40px; }
-        .card {
-            background: var(--white);
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            transition: 0.3s;
-            border: 1px solid #f0f0f0;
-        }
-        .card:hover { transform: translateY(-10px); box-shadow: 0 15px 35px rgba(0,0,0,0.1); }
-        .card img { width: 100%; height: 280px; object-fit: cover; }
-        .card-content { padding: 25px; text-align: center; }
-        .card-content h3 { margin-bottom: 10px; color: var(--primary); font-size: 1.4rem; }
-        .card-content p { color: #666; font-size: 1rem; }
+  .hero-stats {
+    position: absolute; left: 60px; bottom: 60px;
+    display: flex; gap: 48px;
+    animation: fadeInUp .9s .65s ease both;
+  }
+  .stat-item { text-align: center; }
+  .stat-num { font-family: 'Bebas Neue'; font-size: 42px; color: var(--cyan); line-height: 1; }
+  .stat-label { font-size: 12px; color: var(--muted); letter-spacing: 1px; margin-top: 4px; }
 
-        /* Support / Reputation Management */
-        .support-banner {
-            background-color: var(--light-bg);
-            padding: 60px 5%;
-            margin: 40px 0;
-            text-align: center;
-            border-top: 1px solid #eee;
-            border-bottom: 1px solid #eee;
-        }
-        .support-banner h2 { color: var(--accent); margin-bottom: 15px; }
-        .support-link { color: var(--gold); text-decoration: none; font-weight: bold; border-bottom: 2px solid var(--gold); }
+  /* ── FLOATING SHAPES ── */
+  .shape {
+    position: absolute; border-radius: 50%;
+    filter: blur(60px); pointer-events: none;
+  }
+  .shape-1 { width: 400px; height: 400px; background: rgba(0,212,255,.06); top: 10%; right: 5%; animation: float 8s ease-in-out infinite; }
+  .shape-2 { width: 250px; height: 250px; background: rgba(245,200,66,.05); bottom: 15%; right: 25%; animation: float 6s 2s ease-in-out infinite; }
+  @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-20px)} }
 
-        /* Footer */
-        footer { background: var(--primary); color: var(--white); padding: 60px 5% 20px; text-align: center; }
-        .footer-content { max-width: 1200px; margin: auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; margin-bottom: 40px; text-align: right; }
-        .footer-item h4 { color: var(--gold); margin-bottom: 20px; font-size: 1.2rem; }
-        .footer-item p { color: #bbb; font-size: 0.95rem; margin-bottom: 10px; }
-        .copyright { border-top: 1px solid #333; padding-top: 20px; color: #666; font-size: 0.8rem; }
+  /* ── SECTION COMMON ── */
+  section { padding: 100px 60px; position: relative; }
+  .section-label {
+    font-size: 11px; letter-spacing: 4px; text-transform: uppercase;
+    color: var(--cyan); margin-bottom: 12px; font-weight: 700;
+  }
+  .section-title {
+    font-family: 'Bebas Neue'; font-size: clamp(38px, 5vw, 60px);
+    line-height: 1; margin-bottom: 16px;
+  }
+  .section-desc { color: var(--muted); font-size: 16px; line-height: 1.8; max-width: 580px; }
+  .section-head { margin-bottom: 60px; }
+  .divider { width: 60px; height: 3px; background: linear-gradient(90deg, var(--cyan), transparent); margin: 20px 0; }
 
-        @media (max-width: 768px) {
-            .hero h1 { font-size: 2.2rem; }
-            .btn { width: 100%; justify-content: center; }
-        }
-    </style>
+  /* ── PRODUCTS GRID ── */
+  .products { background: var(--deep); }
+  .products-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 24px;
+  }
+  .product-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 16px; padding: 32px;
+    transition: transform .3s, border-color .3s, box-shadow .3s;
+    position: relative; overflow: hidden;
+    cursor: default;
+  }
+  .product-card::before {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(135deg, rgba(0,212,255,.04), transparent);
+    opacity: 0; transition: opacity .3s;
+  }
+  .product-card:hover { transform: translateY(-6px); border-color: rgba(0,212,255,.4); box-shadow: 0 20px 40px rgba(0,0,0,.3); }
+  .product-card:hover::before { opacity: 1; }
+  .card-icon {
+    width: 52px; height: 52px; border-radius: 14px;
+    background: linear-gradient(135deg, rgba(0,212,255,.15), rgba(0,212,255,.05));
+    border: 1px solid rgba(0,212,255,.2);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 26px; margin-bottom: 20px;
+  }
+  .card-title { font-weight: 800; font-size: 18px; margin-bottom: 6px; }
+  .card-title-ar { font-size: 14px; color: var(--cyan); margin-bottom: 14px; font-weight: 600; }
+  .card-items { list-style: none; }
+  .card-items li {
+    font-size: 13px; color: var(--muted); padding: 5px 0;
+    border-bottom: 1px solid rgba(255,255,255,.04);
+    display: flex; align-items: center; gap: 8px;
+  }
+  .card-items li::before { content: '›'; color: var(--cyan); font-size: 16px; flex-shrink: 0; }
+  .card-items li:last-child { border-bottom: none; }
+
+  /* ── BRANDS STRIP ── */
+  .brands { padding: 60px; background: var(--navy); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+  .brands-title { text-align: center; font-size: 12px; letter-spacing: 4px; color: var(--muted); text-transform: uppercase; margin-bottom: 40px; }
+  .brands-grid { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; }
+  .brand-pill {
+    background: var(--card-bg); border: 1px solid var(--border);
+    padding: 10px 24px; border-radius: 100px;
+    font-size: 13px; font-weight: 700; color: var(--muted);
+    transition: color .3s, border-color .3s;
+  }
+  .brand-pill:hover { color: var(--cyan); border-color: rgba(0,212,255,.4); }
+
+  /* ── FEATURES ── */
+  .features-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px;
+    background: var(--border);
+    border: 1px solid var(--border); border-radius: 20px; overflow: hidden;
+  }
+  .feature {
+    background: var(--card-bg); padding: 48px 36px;
+    transition: background .3s;
+  }
+  .feature:hover { background: rgba(13,30,53,0.9); }
+  .feature-num { font-family: 'Bebas Neue'; font-size: 56px; color: rgba(0,212,255,.15); line-height: 1; margin-bottom: 12px; }
+  .feature-title { font-weight: 800; font-size: 17px; margin-bottom: 10px; }
+  .feature-text { font-size: 14px; color: var(--muted); line-height: 1.7; }
+
+  /* ── MACHINERY ── */
+  .machinery { background: var(--deep); }
+  .machinery-cards { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+  .mach-card {
+    background: var(--card-bg); border: 1px solid var(--border);
+    border-radius: 16px; padding: 40px;
+    display: flex; gap: 24px; align-items: flex-start;
+    transition: transform .3s, border-color .3s;
+  }
+  .mach-card:hover { transform: translateY(-4px); border-color: rgba(0,212,255,.35); }
+  .mach-icon { font-size: 40px; flex-shrink: 0; }
+  .mach-title { font-weight: 800; font-size: 17px; margin-bottom: 6px; }
+  .mach-sub { font-size: 13px; color: var(--cyan); margin-bottom: 12px; }
+  .mach-desc { font-size: 13px; color: var(--muted); line-height: 1.7; }
+
+  /* ── CONTACT ── */
+  .contact { background: var(--navy); }
+  .contact-inner {
+    background: linear-gradient(135deg, var(--card-bg), rgba(0,212,255,.05));
+    border: 1px solid var(--border); border-radius: 24px;
+    padding: 80px; display: grid; grid-template-columns: 1fr 1fr; gap: 80px;
+    align-items: center; position: relative; overflow: hidden;
+  }
+  .contact-inner::before {
+    content: ''; position: absolute; top: -100px; left: -100px;
+    width: 400px; height: 400px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(0,212,255,.06), transparent);
+  }
+  .contact-info h2 { font-family: 'Bebas Neue'; font-size: 52px; line-height: 1; margin-bottom: 20px; }
+  .contact-info p { color: var(--muted); font-size: 16px; line-height: 1.8; margin-bottom: 40px; }
+  .contact-items { display: flex; flex-direction: column; gap: 20px; }
+  .contact-item { display: flex; align-items: center; gap: 16px; }
+  .c-icon {
+    width: 46px; height: 46px; border-radius: 12px;
+    background: rgba(0,212,255,.1); border: 1px solid rgba(0,212,255,.2);
+    display: flex; align-items: center; justify-content: center; font-size: 20px; flex-shrink: 0;
+  }
+  .c-label { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 2px; }
+  .c-value { font-size: 16px; font-weight: 700; color: var(--white); }
+  .contact-form { position: relative; }
+  .form-group { margin-bottom: 20px; }
+  .form-group label { display: block; font-size: 12px; color: var(--muted); margin-bottom: 8px; letter-spacing: 1px; }
+  .form-group input,
+  .form-group textarea,
+  .form-group select {
+    width: 100%; background: rgba(255,255,255,.04);
+    border: 1px solid var(--border); border-radius: 10px;
+    padding: 14px 18px; color: var(--white); font-family: 'Cairo', sans-serif;
+    font-size: 14px; transition: border-color .3s, background .3s;
+    outline: none; direction: rtl;
+  }
+  .form-group input:focus,
+  .form-group textarea:focus,
+  .form-group select:focus { border-color: rgba(0,212,255,.5); background: rgba(0,212,255,.04); }
+  .form-group textarea { height: 110px; resize: none; }
+  .form-group select option { background: var(--deep); }
+  .form-submit {
+    width: 100%; padding: 16px;
+    background: linear-gradient(135deg, var(--cyan), #0080ff);
+    border: none; border-radius: 10px;
+    color: var(--navy); font-family: 'Cairo', sans-serif;
+    font-size: 16px; font-weight: 800; cursor: pointer;
+    transition: transform .2s, box-shadow .2s;
+  }
+  .form-submit:hover { transform: translateY(-2px); box-shadow: 0 12px 28px rgba(0,212,255,.35); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--deep); padding: 60px;
+    border-top: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 24px;
+  }
+  .footer-logo { display: flex; align-items: center; gap: 12px; }
+  .footer-copy { font-size: 13px; color: var(--muted); }
+  .footer-copy span { color: var(--cyan); }
+  .footer-links { display: flex; gap: 24px; }
+  .footer-links a { color: var(--muted); font-size: 13px; text-decoration: none; transition: color .3s; }
+  .footer-links a:hover { color: var(--cyan); }
+
+  /* ── SCROLL ANIMATIONS ── */
+  .reveal { opacity: 0; transform: translateY(24px); transition: opacity .7s ease, transform .7s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 1024px) {
+    nav { padding: 18px 30px; }
+    .nav-links { display: none; }
+    section { padding: 80px 30px; }
+    .hero { padding: 120px 30px 80px; }
+    .hero-stats { left: 30px; }
+    .features-grid { grid-template-columns: 1fr; }
+    .machinery-cards { grid-template-columns: 1fr; }
+    .contact-inner { grid-template-columns: 1fr; padding: 40px; gap: 40px; }
+    footer { padding: 40px 30px; }
+    .brands { padding: 40px 30px; }
+  }
+  @media (max-width: 640px) {
+    .hero h1 { font-size: 48px; }
+    .hero-btns { flex-direction: column; }
+    .hero-stats { position: static; margin-top: 48px; justify-content: flex-start; }
+    .products-grid { grid-template-columns: 1fr; }
+  }
+</style>
 </head>
 <body>
 
-    <nav>
-        <div class="logo">MILANO BY DANUBE</div>
-    </nav>
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">
+    <div class="logo-icon">⚡</div>
+    <div class="logo-text">
+      FLASH
+      <span>TRADING COMPANY</span>
+    </div>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#products">المنتجات</a></li>
+    <li><a href="#machinery">المعدات</a></li>
+    <li><a href="#why">لماذا فلاش</a></li>
+    <li><a href="#contact">تواصل معنا</a></li>
+  </ul>
+  <a href="tel:+97466667795" class="nav-cta">📞 اتصل الآن</a>
+</nav>
 
-    <header class="hero">
-        <h1>ميلانو.. فخامة المنزل الإيطالي</h1>
-        <p>اكتشفي أرقى تشكيلات الأثاث، الأدوات الصحية، والديكور في أكبر معرض بطريق سلوى - الدوحة</p>
-        <div class="cta-container">
-            <a href="tel:+97444365057" class="btn btn-call">اتصالي بالمعرض</a>
-            <a href="https://wa.me/97444365057" class="btn btn-wa">استفسار واتساب</a>
-        </div>
-    </header>
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="shape shape-1"></div>
+  <div class="shape shape-2"></div>
 
-    <section class="section">
-        <div class="section-header">
-            <h2>ماذا يميز فرع طريق سلوى؟</h2>
-        </div>
-        <div class="grid">
-            <div class="card">
-                <img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?q=80&w=1000" alt="أثاث مودرن الدوحة قطر">
-                <div class="card-content">
-                    <h3>الأثاث والمفروشات</h3>
-                    <p>غرف نوم، أطقم كنب، وطاولات طعام بتصاميم تجمع بين الراحة والفخامة.</p>
-                </div>
-            </div>
-            <div class="card">
-                <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?q=80&w=1000" alt="أدوات صحية ميلانو قطر">
-                <div class="card-content">
-                    <h3>الأدوات الصحية</h3>
-                    <p>حلول مبتكرة للحمامات، خلاطات مياه فاخرة، وإكسسوارات بجودة عالمية.</p>
-                </div>
-            </div>
-            <div class="card">
-                <img src="https://images.unsplash.com/photo-1513519245088-0e12902e5a38?q=80&w=1000" alt="ديكور وإضاءة قطر">
-                <div class="card-content">
-                    <h3>الديكور والإضاءة</h3>
-                    <p>لمسات فنية تكتمل بها أناقة منزلك من نجف وإضاءات وتحف راقية.</p>
-                </div>
-            </div>
-        </div>
-    </section>
+  <div class="hero-content">
+    <div class="hero-badge">
+      <span class="badge-dot"></span>
+      شركة رائدة في قطر · الدوحة
+    </div>
+    <h1>
+      معدات الغسيل
+      <span class="accent">الاحترافية</span>
+      <span class="gold">FLASH</span>
+    </h1>
+    <p class="hero-sub">
+      المورد الأول لمعدات وإكسسوارات الغسيل والتنظيف الجاف في قطر.<br>
+      منتجات عالية الجودة · أسعار تنافسية · خدمة متميزة
+    </p>
+    <div class="hero-btns">
+      <a href="#products" class="btn-primary">استكشف المنتجات</a>
+      <a href="#contact" class="btn-outline">طلب عرض سعر</a>
+    </div>
+  </div>
 
-    <section class="support-banner">
-        <h2>هل اشتريتِ منا مؤخراً؟</h2>
-        <p>نحن نهتم بتجربتك بعد البيع. إذا واجهتِ أي تأخير في التوصيل أو التركيب، فريقنا هنا للحل فوراً.</p>
-        <br>
-        <a href="https://wa.me/97444365057" class="support-link">تحدثي مع قسم خدمة العملاء مباشرة</a>
-    </section>
+  <div class="hero-stats">
+    <div class="stat-item">
+      <div class="stat-num">500+</div>
+      <div class="stat-label">منتج متاح</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">10+</div>
+      <div class="stat-label">فئة منتجات</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">24/7</div>
+      <div class="stat-label">دعم العملاء</div>
+    </div>
+  </div>
+</section>
 
-    <footer>
-        <div class="footer-content">
-            <div class="footer-item">
-                <h4>عن ميلانو طريق سلوى</h4>
-                <p>نحن جزء من مجموعة دانوب هوم الرائدة، نقدم أرقى حلول التصميم المنزلي في قطر منذ سنوات.</p>
-            </div>
-            <div class="footer-item">
-                <h4>ساعات العمل</h4>
-                <p>يومياً: 09:00 صباحاً - 09:00 مساءً</p>
-                <p>الجمعة: متاح (يرجى التأكد من المواعيد الموسمية)</p>
-            </div>
-            <div class="footer-item">
-                <h4>موقعنا</h4>
-                <p>طريق سلوى، مبنى 303، عمارة ميلانو</p>
-                <p>الدوحة، قطر</p>
-                <p>هاتف: 44365057</p>
-            </div>
-        </div>
-        <div class="copyright">
-            &copy; 2026 Milano by Danube Home - Salwa Road Branch | طُور لأغراض العرض التجاري
-        </div>
-    </footer>
+<!-- BRANDS -->
+<div class="brands">
+  <div class="brands-title">العلامات التجارية التي نوفرها</div>
+  <div class="brands-grid">
+    <div class="brand-pill">FLASH</div>
+    <div class="brand-pill">ALPHA</div>
+    <div class="brand-pill">TIGER</div>
+    <div class="brand-pill">PEARL</div>
+    <div class="brand-pill">EXTRA CLEAN</div>
+    <div class="brand-pill">DELTAPER</div>
+    <div class="brand-pill">DANUBE</div>
+    <div class="brand-pill">ROTONDI</div>
+    <div class="brand-pill">PONY</div>
+    <div class="brand-pill">RUSTGO</div>
+    <div class="brand-pill">INKGO</div>
+    <div class="brand-pill">YELLOWGO</div>
+    <div class="brand-pill">MAGIC</div>
+    <div class="brand-pill">PILOT</div>
+    <div class="brand-pill">NIAGARA</div>
+  </div>
+</div>
 
+<!-- PRODUCTS -->
+<section id="products" class="products">
+  <div class="section-head reveal">
+    <div class="section-label">كتالوج المنتجات</div>
+    <h2 class="section-title">جميع فئات منتجاتنا</h2>
+    <div class="divider"></div>
+    <p class="section-desc">نوفر كل ما تحتاجه مغسلتك من مواد ومعدات وإكسسوارات بأعلى معايير الجودة</p>
+  </div>
+
+  <div class="products-grid">
+    <!-- 1 -->
+    <div class="product-card reveal">
+      <div class="card-icon">🧴</div>
+      <div class="card-title">Liquid Laundry Supplies</div>
+      <div class="card-title-ar">مستلزمات الغسيل السائلة</div>
+      <ul class="card-items">
+        <li>Alpha Laundry Emulsifier – 20L</li>
+        <li>Flash Abaya Shampoo – 20L</li>
+        <li>Flash Fabric Softener (Original & Flowers) – 30L</li>
+        <li>Flash Bleach Cleaner Chlorine – 30L</li>
+        <li>Extra Clean Emulsifier – 30L</li>
+        <li>Alpha Aroma Sense Fabric Softener – 20L</li>
+        <li>Alfa Aroma Soft Fabric Softener – 20L</li>
+        <li>Alpha Fabric Softener – 20L</li>
+        <li>Liquid Detergent – 30L</li>
+        <li>Fabric Softener Premium – 30L</li>
+        <li>Scarpavapor Shoe Chemical – 5L</li>
+      </ul>
+    </div>
+
+    <!-- 2 -->
+    <div class="product-card reveal">
+      <div class="card-icon">⚗️</div>
+      <div class="card-title">Laundry Chemicals</div>
+      <div class="card-title-ar">مواد كيميائية للغسيل</div>
+      <ul class="card-items">
+        <li>Bleach & Deodorizer – Hydro Powder 1KG</li>
+        <li>Deltaper Foam Cleaner / Chlore – 330KG</li>
+        <li>Dry Cleaning Perchlorethylene – Deltaper Pure Power 23KG</li>
+        <li>Perklone Dry Clean Chemical – 330KG (Made in UK)</li>
+        <li>Caustic Soda – 25KG</li>
+        <li>Soda Ash Light – 25KG</li>
+      </ul>
+    </div>
+
+    <!-- 3 -->
+    <div class="product-card reveal">
+      <div class="card-icon">🧹</div>
+      <div class="card-title">Stain Removers</div>
+      <div class="card-title-ar">مزيلات البقع</div>
+      <ul class="card-items">
+        <li>Flash Stain Remover</li>
+        <li>Tar Clean – مزيل بقع تار كلين</li>
+        <li>Targo Dry – 1L</li>
+        <li>Blood Clean – مزيل الدم</li>
+        <li>Ink Clean – مزيل الحبر</li>
+        <li>Bev Clean – مزيل المشروبات</li>
+        <li>Rust Clean / RustGo – مزيل الصدأ</li>
+        <li>InkGo – مزيل الحبر الأمريكي</li>
+        <li>BonGo – مزيل بقع</li>
+        <li>QwikGo – مزيل بقع</li>
+        <li>YellowGo – مزيل صبغة الصفراء</li>
+      </ul>
+    </div>
+
+    <!-- 4 -->
+    <div class="product-card reveal">
+      <div class="card-icon">🪣</div>
+      <div class="card-title">Powder Laundry Detergent</div>
+      <div class="card-title-ar">مسحوق غسيل</div>
+      <ul class="card-items">
+        <li>Pearl Automatic – 25KG</li>
+        <li>Pearl High Foam – 25KG</li>
+        <li>Tiger Automatic Low Foam – 25KG</li>
+        <li>Tiger High Foam – 25KG</li>
+        <li>Flash Soap Powder Low Foam – 25KG</li>
+        <li>Magic Low Foam – 25KG</li>
+      </ul>
+    </div>
+
+    <!-- 5 -->
+    <div class="product-card reveal">
+      <div class="card-icon">🌸</div>
+      <div class="card-title">Fabric Fresheners & Ironing Cleaning</div>
+      <div class="card-title-ar">معطر الأقمشة + تنظيف آلة الكي</div>
+      <ul class="card-items">
+        <li>Loyal Air Freshener – 450ML</li>
+        <li>Sabaya Freshener – 500ML</li>
+        <li>Fresh "N" Air Freshener – 5L</li>
+        <li>Ez-Off Ironing Cleaning Tube</li>
+        <li>للملابس والبطانيات والشراشف</li>
+      </ul>
+    </div>
+
+    <!-- 6 -->
+    <div class="product-card reveal">
+      <div class="card-icon">✒️</div>
+      <div class="card-title">Markers & Labeling</div>
+      <div class="card-title-ar">أقلام وأدوات الوسم</div>
+      <ul class="card-items">
+        <li>Pilot Twin Markers (Fine + Extra Fine)</li>
+        <li>Pilot SCA-400 Permanent Marker – Broad</li>
+        <li>SCA-TM Twin Point Marker</li>
+        <li>Laundry Label (Tagging)</li>
+        <li>Tagging Gun – USA / India / Korea / China</li>
+        <li>Tagging Gun Fasteners & Needles</li>
+      </ul>
+    </div>
+
+    <!-- 7 -->
+    <div class="product-card reveal">
+      <div class="card-icon">🔧</div>
+      <div class="card-title">Iron Equipment</div>
+      <div class="card-title-ar">معدات كي</div>
+      <ul class="card-items">
+        <li>Ketco Iron – 12 & 14 Pounds</li>
+        <li>Braso Iron – 12 & 14 Pounds</li>
+        <li>Stirolux Electric Steam Machine – 12 & 14 Pounds</li>
+        <li>Element – 1000W / 1250W / 1500W</li>
+        <li>Silicone Ironing Pad – وسادة سيليكون</li>
+        <li>Iron Cable – كابل المكواة</li>
+        <li>Soleplate of Steam Iron – Teflon Shoe Original</li>
+      </ul>
+    </div>
+
+    <!-- 8 -->
+    <div class="product-card reveal">
+      <div class="card-icon">💧</div>
+      <div class="card-title">Starch Liquid & Spray</div>
+      <div class="card-title-ar">سائل النشا + بخاخ النشا</div>
+      <ul class="card-items">
+        <li>Starch Liquid – 5L / 20L</li>
+        <li>Faultless Niagara Ironing Spray Starch</li>
+        <li>Merito Original Clothes Spray</li>
+        <li>Fid Fad Anti-Static Clothes Spray</li>
+      </ul>
+    </div>
+
+    <!-- 9 -->
+    <div class="product-card reveal">
+      <div class="card-icon">🛍️</div>
+      <div class="card-title">Laundry Bags</div>
+      <div class="card-title-ar">أكياس الغسيل</div>
+      <ul class="card-items">
+        <li>Flash Plastic Roll Laundry Bags – 5KG / 20KG</li>
+        <li>Transparent & Free From Impurities</li>
+        <li>Mesh Laundry Bag – شنطة غسيل</li>
+      </ul>
+    </div>
+
+    <!-- 10 -->
+    <div class="product-card reveal">
+      <div class="card-icon">📦</div>
+      <div class="card-title">Accessories</div>
+      <div class="card-title-ar">اكسسوارات</div>
+      <ul class="card-items">
+        <li>Hangers – 1.9 / 2.2 / 2.3 / 2.5 / 2.6 MM (Regular & Gold)</li>
+        <li>Shoulder & Trouser Guards</li>
+        <li>Thermopatch Tape (Standard & USA)</li>
+        <li>Shirt Board / Garment Rack / Garment Clips</li>
+        <li>Plastic Trolley – 350L / 500L / 700L</li>
+        <li>Lint Rollers / Fabric Brush</li>
+        <li>Steam Table Cover / Iron Mat</li>
+        <li>Polyester White Padding (Italian)</li>
+        <li>Thermal Paper / Electric Plug / Tape / Register Book</li>
+        <li>Sticky Notes / Notebook / Terminal Pin</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- MACHINERY -->
+<section id="machinery" class="machinery">
+  <div class="section-head reveal">
+    <div class="section-label">معدات ثقيلة</div>
+    <h2 class="section-title">معدات الغسيل والتنظيف الجاف</h2>
+    <div class="divider"></div>
+    <p class="section-desc">أحدث الماكينات الأوروبية للغسيل الاحترافي والتنظيف الجاف</p>
+  </div>
+  <div class="machinery-cards">
+    <div class="mach-card reveal">
+      <div class="mach-icon">🌊</div>
+      <div>
+        <div class="mach-title">DANUBE – Washing Machine</div>
+        <div class="mach-sub">صناعة فرنسية</div>
+        <p class="mach-desc">ماكينة غسيل صناعية عالية الكفاءة من دانوب الفرنسية، مصممة للاستخدام المكثف في المغاسل الاحترافية مع نظام تحكم رقمي متطور.</p>
+      </div>
+    </div>
+    <div class="mach-card reveal">
+      <div class="mach-icon">🌬️</div>
+      <div>
+        <div class="mach-title">DANUBE – Dryer Machine</div>
+        <div class="mach-sub">صناعة فرنسية</div>
+        <p class="mach-desc">مجفف صناعي متكامل بتقنية التحكم الدقيق في الحرارة، يضمن تجفيفاً سريعاً وآمناً لجميع أنواع الأقمشة.</p>
+      </div>
+    </div>
+    <div class="mach-card reveal">
+      <div class="mach-icon">♨️</div>
+      <div>
+        <div class="mach-title">Rotondi 388/AC – Steam Ironing Table</div>
+        <div class="mach-sub">صناعة إيطالية</div>
+        <p class="mach-desc">طاولة كي بخارية إيطالية الصنع مزودة بغلاية بخار داخلية وفراغ تلقائي، من أفضل ماكينات الكي الاحترافية في السوق.</p>
+      </div>
+    </div>
+    <div class="mach-card reveal">
+      <div class="mach-icon">⚡</div>
+      <div>
+        <div class="mach-title">Pony Classic 110 – Iron Table</div>
+        <div class="mach-sub">مع غلاية ووحدة فراغ</div>
+        <p class="mach-desc">طاولة كي كهربائية متكاملة بغلاية بخار ووحدة شفط هواء، تأتي مع مكواة بخارية كهربائية بمفتاح تحكم خارجي.</p>
+      </div>
+    </div>
+    <div class="mach-card reveal">
+      <div class="mach-icon">📦</div>
+      <div>
+        <div class="mach-title">IMESA IMA2/W – Garment Wrapping Machine</div>
+        <div class="mach-sub">220-250V / 50-60Hz</div>
+        <p class="mach-desc">ماكينة تغليف ملابس تُركّب على الجدار، موفرة للمساحة ومصممة للإنتاج الكثيف في المغاسل التجارية والفندقية.</p>
+      </div>
+    </div>
+    <div class="mach-card reveal">
+      <div class="mach-icon">🔬</div>
+      <div>
+        <div class="mach-title">Stain Removal Equipment</div>
+        <div class="mach-sub">معدات إزالة البقع المتخصصة</div>
+        <p class="mach-desc">منظومة متكاملة من أجهزة إزالة البقع المتخصصة لمختلف أنواع التلوث: الدم، الحبر، الصدأ، الزيوت، ومواد التنظيف الجاف.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section id="why" style="background: var(--navy);">
+  <div class="section-head reveal" style="text-align:center; margin: 0 auto 60px;">
+    <div class="section-label" style="text-align:center">لماذا تختار فلاش</div>
+    <h2 class="section-title" style="text-align:center">مزايانا التنافسية</h2>
+    <div class="divider" style="margin: 20px auto;"></div>
+  </div>
+  <div class="features-grid reveal">
+    <div class="feature">
+      <div class="feature-num">01</div>
+      <div class="feature-title">جودة معتمدة</div>
+      <p class="feature-text">جميع منتجاتنا من أفضل المصانع العالمية في أمريكا، إيطاليا، فرنسا، والمملكة المتحدة مع ضمان الجودة الكاملة.</p>
+    </div>
+    <div class="feature">
+      <div class="feature-num">02</div>
+      <div class="feature-title">تنوع استثنائي</div>
+      <p class="feature-text">أكثر من 500 منتج تغطي كل احتياجات مغسلتك من مواد كيميائية، معدات، إكسسوارات، ومزيلات بقع متخصصة.</p>
+    </div>
+    <div class="feature">
+      <div class="feature-num">03</div>
+      <div class="feature-title">خبرة وثقة</div>
+      <p class="feature-text">شركة فلاش للتجارة هي المرجع الأول في قطر لتوريد معدات الغسيل الاحترافي والتنظيف الجاف للمغاسل والفنادق.</p>
+    </div>
+    <div class="feature">
+      <div class="feature-num">04</div>
+      <div class="feature-title">أسعار تنافسية</div>
+      <p class="feature-text">نوفر أفضل الأسعار في السوق القطري مع إمكانية التوريد بالجملة للكميات الكبيرة وعروض خاصة للعملاء الدائمين.</p>
+    </div>
+    <div class="feature">
+      <div class="feature-num">05</div>
+      <div class="feature-title">توصيل سريع</div>
+      <p class="feature-text">نضمن توصيل طلباتك في أسرع وقت ممكن داخل قطر مع إمكانية الاستلام المباشر أو الطلب الإلكتروني.</p>
+    </div>
+    <div class="feature">
+      <div class="feature-num">06</div>
+      <div class="feature-title">دعم متخصص</div>
+      <p class="feature-text">فريقنا المتخصص جاهز لمساعدتك في اختيار المنتج المناسب وتقديم الدعم الفني لمعدات الغسيل والتنظيف.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="contact">
+  <div class="contact-inner reveal">
+    <div class="contact-info">
+      <div class="section-label">تواصل معنا</div>
+      <h2>نحن هنا<br><span style="color:var(--cyan)">لخدمتك</span></h2>
+      <p>تواصل مع فريق شركة فلاش للتجارة للحصول على عروض أسعار، استفسارات عن المنتجات، أو أي دعم تحتاجه.</p>
+      <div class="contact-items">
+        <div class="contact-item">
+          <div class="c-icon">📞</div>
+          <div>
+            <div class="c-label">هاتف</div>
+            <div class="c-value" dir="ltr">+974 6666 7795</div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="c-icon">📧</div>
+          <div>
+            <div class="c-label">البريد الإلكتروني</div>
+            <div class="c-value">info.flashqa@gmail.com</div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="c-icon">🌐</div>
+          <div>
+            <div class="c-label">الموقع الإلكتروني</div>
+            <div class="c-value">flash.com.qa</div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="c-icon">📍</div>
+          <div>
+            <div class="c-label">الموقع</div>
+            <div class="c-value">الدوحة، قطر</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="contact-form">
+      <div class="form-group">
+        <label>الاسم الكامل</label>
+        <input type="text" placeholder="أدخل اسمك">
+      </div>
+      <div class="form-group">
+        <label>رقم الهاتف</label>
+        <input type="tel" placeholder="+974 XXXX XXXX" dir="ltr">
+      </div>
+      <div class="form-group">
+        <label>نوع الاستفسار</label>
+        <select>
+          <option value="">اختر نوع الطلب</option>
+          <option>طلب عرض سعر</option>
+          <option>استفسار عن منتج</option>
+          <option>طلب جملة</option>
+          <option>دعم فني</option>
+          <option>أخرى</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>رسالتك</label>
+        <textarea placeholder="اكتب استفسارك أو طلبك هنا..."></textarea>
+      </div>
+      <button class="form-submit" onclick="handleSubmit(this)">إرسال الطلب ⚡</button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">
+    <div class="logo-icon" style="width:36px;height:36px;font-size:18px;">⚡</div>
+    <div class="logo-text">
+      FLASH TRADING
+      <span>شركة فلاش للتجارة</span>
+    </div>
+  </div>
+  <div class="footer-copy">
+    © 2025 <span>Flash Trading Company</span> · شركة فلاش للتجارة · الدوحة، قطر
+  </div>
+  <div class="footer-links">
+    <a href="#products">المنتجات</a>
+    <a href="#machinery">المعدات</a>
+    <a href="#contact">التواصل</a>
+  </div>
+</footer>
+
+<script>
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 60);
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(r => observer.observe(r));
+
+  // Form submit
+  function handleSubmit(btn) {
+    btn.textContent = '✅ تم إرسال طلبك بنجاح!';
+    btn.style.background = 'linear-gradient(135deg, #00c853, #00897b)';
+    btn.disabled = true;
+    setTimeout(() => {
+      btn.textContent = 'إرسال الطلب ⚡';
+      btn.style.background = '';
+      btn.disabled = false;
+    }, 3500);
+  }
+
+  // Nav active state on scroll
+  window.addEventListener('scroll', () => {
+    const nav = document.querySelector('nav');
+    nav.style.background = window.scrollY > 50
+      ? 'rgba(5,13,26,0.97)'
+      : 'rgba(5,13,26,0.85)';
+  });
+</script>
 </body>
 </html>
