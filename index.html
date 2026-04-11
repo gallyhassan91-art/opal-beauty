@@ -1,818 +1,643 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Flash Trading Company | شركة فلاش للتجارة</title>
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&family=Bebas+Neue&family=Montserrat:wght@300;400;700;900&display=swap" rel="stylesheet">
+<title>VitalEdge | Science-Backed Health & Performance</title>
+<meta name="description" content="Expert guides on Nitric Oxide, CoQ10, and Moringa for peak performance, blood flow, and natural energy.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --navy: #050d1a;
-    --deep: #0a1628;
-    --cyan: #00d4ff;
-    --cyan-dim: #0099bb;
-    --gold: #f5c842;
-    --white: #f0f4ff;
-    --muted: #7a8fa6;
-    --card-bg: #0d1e35;
-    --border: rgba(0,212,255,0.15);
-  }
+:root{--bg:#07090d;--bg2:#0d1118;--card:#0d1218;--white:#f0ece3;--muted:#7a7a6e;--border:rgba(255,255,255,.07);--red:#c84e3d;--gold:#c8a96e;--green:#52a878;}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--white);font-family:'DM Sans',sans-serif;overflow-x:hidden;cursor:none;}
+#cur{position:fixed;width:10px;height:10px;border-radius:50%;pointer-events:none;z-index:9999;transition:transform .15s,background .3s;background:var(--gold);}
+#ring{position:fixed;width:36px;height:36px;border-radius:50%;pointer-events:none;z-index:9998;transition:all .12s ease;border:1px solid rgba(200,169,110,.45);}
+#prog{position:fixed;top:0;left:0;height:3px;z-index:300;background:linear-gradient(90deg,var(--red),var(--gold),var(--green));transition:width .1s;}
 
-  * { margin: 0; padding: 0; box-sizing: border-box; }
+/* NAV */
+nav{position:fixed;top:0;width:100%;z-index:200;padding:0 60px;height:68px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border);backdrop-filter:blur(24px);background:rgba(7,9,13,.88);}
+.n-brand{font-family:'Playfair Display';font-size:22px;font-weight:900;color:var(--gold);text-decoration:none;}
+.n-brand span{color:var(--white);}
+.n-tag{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--muted);}
+.n-links{display:flex;gap:0;list-style:none;}
+.n-links a{display:block;padding:0 22px;line-height:68px;color:var(--muted);text-decoration:none;font-size:13px;font-weight:500;border-left:1px solid var(--border);transition:color .3s,background .3s;}
+.n-links a:hover,.n-links a.active{color:var(--white);background:rgba(255,255,255,.03);}
+.n-links a[data-art="1"].active{color:var(--red);}
+.n-links a[data-art="2"].active{color:var(--gold);}
+.n-links a[data-art="3"].active{color:var(--green);}
 
-  html { scroll-behavior: smooth; }
+/* HOME HERO */
+#home{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:120px 60px 100px;position:relative;overflow:hidden;}
+.h-bg{position:absolute;inset:0;background:radial-gradient(ellipse at 25% 55%,rgba(200,78,61,.07),transparent 55%),radial-gradient(ellipse at 75% 30%,rgba(200,169,110,.06),transparent 50%),radial-gradient(ellipse at 60% 80%,rgba(82,168,120,.05),transparent 45%);}
+.h-grid{position:absolute;inset:0;background-image:linear-gradient(var(--border) 1px,transparent 1px),linear-gradient(90deg,var(--border) 1px,transparent 1px);background-size:72px 72px;mask-image:radial-gradient(ellipse at center,black 30%,transparent 75%);}
+.h-eye{font-size:11px;letter-spacing:5px;text-transform:uppercase;color:var(--gold);margin-bottom:28px;opacity:0;animation:fadeUp .8s .2s ease forwards;}
+.h-title{font-family:'Playfair Display';font-size:clamp(52px,8vw,112px);font-weight:900;line-height:.92;margin-bottom:36px;opacity:0;animation:fadeUp .9s .35s ease forwards;}
+.h-title em{font-style:italic;color:var(--gold);}
+.h-title .sub{display:block;font-size:.42em;font-weight:400;color:var(--muted);font-style:italic;margin-top:20px;}
+.h-desc{max-width:520px;color:var(--muted);font-size:17px;line-height:1.85;margin-bottom:52px;opacity:0;animation:fadeUp .9s .5s ease forwards;}
+.h-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:var(--border);opacity:0;animation:fadeUp .9s .65s ease forwards;}
+.h-card{background:var(--card);padding:40px 36px;text-decoration:none;display:block;position:relative;overflow:hidden;transition:transform .35s ease;}
+.h-card:hover{transform:translateY(-5px);}
+.h-card-bar{position:absolute;top:0;left:0;right:0;height:3px;}
+.h-card:nth-child(1) .h-card-bar{background:var(--red);}
+.h-card:nth-child(2) .h-card-bar{background:var(--gold);}
+.h-card:nth-child(3) .h-card-bar{background:var(--green);}
+.h-num{font-family:'Playfair Display';font-size:56px;font-weight:900;line-height:1;margin-bottom:16px;}
+.h-card:nth-child(1) .h-num{color:rgba(200,78,61,.16);}
+.h-card:nth-child(2) .h-num{color:rgba(200,169,110,.16);}
+.h-card:nth-child(3) .h-num{color:rgba(82,168,120,.16);}
+.h-cat{font-size:10px;letter-spacing:4px;text-transform:uppercase;margin-bottom:14px;}
+.h-card:nth-child(1) .h-cat{color:var(--red);}
+.h-card:nth-child(2) .h-cat{color:var(--gold);}
+.h-card:nth-child(3) .h-cat{color:var(--green);}
+.h-ctitle{font-family:'Playfair Display';font-size:20px;font-weight:900;line-height:1.2;margin-bottom:14px;color:var(--white);}
+.h-cdesc{font-size:13px;color:var(--muted);line-height:1.7;margin-bottom:24px;}
+.h-cread{font-size:11px;letter-spacing:2px;text-transform:uppercase;}
+.h-card:nth-child(1) .h-cread{color:var(--red);}
+.h-card:nth-child(2) .h-cread{color:var(--gold);}
+.h-card:nth-child(3) .h-cread{color:var(--green);}
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
 
-  body {
-    background: var(--navy);
-    color: var(--white);
-    font-family: 'Cairo', sans-serif;
-    overflow-x: hidden;
-    direction: rtl;
-  }
+/* TICKER */
+.ticker{padding:14px 0;background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);overflow:hidden;}
+.ticker-inner{display:flex;animation:tick 22s linear infinite;white-space:nowrap;}
+.t-item{font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--muted);padding:0 36px;border-right:1px solid var(--border);flex-shrink:0;}
+@keyframes tick{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 
-  /* ── NOISE OVERLAY ── */
-  body::before {
-    content: '';
-    position: fixed; inset: 0;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
-    pointer-events: none; z-index: 0; opacity: .6;
-  }
+/* SHARED ARTICLE */
+.art-section{position:relative;}
+.art-hero{min-height:75vh;display:flex;align-items:flex-end;padding:120px 60px 80px;position:relative;overflow:hidden;}
+.art-hbg{position:absolute;inset:0;}
+.art-hgrid{position:absolute;inset:0;background-image:linear-gradient(var(--border) 1px,transparent 1px),linear-gradient(90deg,var(--border) 1px,transparent 1px);background-size:80px 80px;opacity:.35;}
+.art-hc{position:relative;max-width:920px;}
+.art-cat{display:inline-block;font-size:10px;letter-spacing:5px;text-transform:uppercase;padding-bottom:10px;border-bottom:1px solid;margin-bottom:32px;opacity:0;animation:fadeUp .8s .1s ease forwards;}
+.art-h1{font-family:'Playfair Display';font-size:clamp(38px,5.5vw,74px);font-weight:900;line-height:.97;margin-bottom:32px;opacity:0;animation:fadeUp .9s .25s ease forwards;}
+.art-h1 em{font-style:italic;}
+.art-meta{display:flex;align-items:center;gap:24px;flex-wrap:wrap;opacity:0;animation:fadeUp .9s .4s ease forwards;}
+.art-tag{font-size:11px;color:var(--muted);letter-spacing:1px;padding:5px 14px;border:1px solid var(--border);}
+.art-lead{max-width:700px;font-size:18px;color:rgba(240,236,227,.72);line-height:1.88;font-style:italic;margin-top:40px;opacity:0;animation:fadeUp .9s .55s ease forwards;}
 
-  /* ── NAV ── */
-  nav {
-    position: fixed; top: 0; width: 100%; z-index: 100;
-    padding: 18px 60px;
-    display: flex; align-items: center; justify-content: space-between;
-    background: rgba(5,13,26,0.85);
-    backdrop-filter: blur(20px);
-    border-bottom: 1px solid var(--border);
-  }
-  .nav-logo { display: flex; align-items: center; gap: 14px; }
-  .logo-icon {
-    width: 44px; height: 44px;
-    background: linear-gradient(135deg, var(--cyan), var(--gold));
-    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
-    display: flex; align-items: center; justify-content: center;
-    font-family: 'Bebas Neue'; font-size: 22px; color: var(--navy);
-    animation: pulse 3s ease-in-out infinite;
-  }
-  @keyframes pulse { 0%,100%{box-shadow:0 0 0 0 rgba(0,212,255,.4)} 50%{box-shadow:0 0 0 12px rgba(0,212,255,0)} }
-  .logo-text { font-weight: 900; font-size: 18px; line-height: 1.1; }
-  .logo-text span { display: block; font-size: 11px; font-weight: 300; color: var(--cyan); letter-spacing: 3px; }
-  .nav-links { display: flex; gap: 32px; list-style: none; }
-  .nav-links a { color: var(--muted); text-decoration: none; font-size: 14px; font-weight: 600; transition: color .3s; }
-  .nav-links a:hover { color: var(--cyan); }
-  .nav-cta {
-    background: linear-gradient(135deg, var(--cyan), #0080ff);
-    color: var(--navy); padding: 10px 24px; border-radius: 6px;
-    font-weight: 700; font-size: 13px; text-decoration: none;
-    transition: transform .2s, box-shadow .2s;
-  }
-  .nav-cta:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,212,255,.35); }
+/* BODY */
+.art-body{max-width:780px;margin:0 auto;padding:80px 40px;}
+.art-body h2{font-family:'Playfair Display';font-size:clamp(24px,3vw,38px);font-weight:900;margin:64px 0 22px;line-height:1.05;}
+.art-body p{font-size:17px;color:rgba(240,236,227,.8);line-height:1.92;margin-bottom:26px;}
+.art-body strong{color:var(--white);font-weight:600;}
 
-  /* ── HERO ── */
-  .hero {
-    min-height: 100vh;
-    display: flex; align-items: center;
-    padding: 120px 60px 80px;
-    position: relative; overflow: hidden;
-  }
-  .hero-bg {
-    position: absolute; inset: 0;
-    background: radial-gradient(ellipse at 70% 50%, rgba(0,212,255,.08) 0%, transparent 60%),
-                radial-gradient(ellipse at 20% 80%, rgba(245,200,66,.05) 0%, transparent 50%),
-                linear-gradient(180deg, var(--navy) 0%, var(--deep) 100%);
-  }
-  .hero-grid {
-    position: absolute; inset: 0;
-    background-image: linear-gradient(var(--border) 1px, transparent 1px),
-                      linear-gradient(90deg, var(--border) 1px, transparent 1px);
-    background-size: 60px 60px;
-    mask-image: radial-gradient(ellipse at center, black 30%, transparent 80%);
-  }
-  .hero-content { position: relative; max-width: 680px; }
-  .hero-badge {
-    display: inline-flex; align-items: center; gap: 8px;
-    background: rgba(0,212,255,.1); border: 1px solid var(--border);
-    padding: 6px 16px; border-radius: 100px; margin-bottom: 32px;
-    font-size: 12px; color: var(--cyan); letter-spacing: 2px; text-transform: uppercase;
-    animation: fadeInDown .8s ease both;
-  }
-  .badge-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--cyan); animation: blink 1.5s infinite; }
-  @keyframes blink { 0%,100%{opacity:1} 50%{opacity:.2} }
-  @keyframes fadeInDown { from{opacity:0;transform:translateY(-20px)} to{opacity:1;transform:translateY(0)} }
+/* PART DIVIDER */
+.pt{display:flex;align-items:center;gap:20px;margin:80px 0 24px;}
+.pt-n{font-family:'Playfair Display';font-size:52px;font-weight:900;line-height:1;opacity:.15;}
+.pt-l{flex:1;height:1px;background:var(--border);}
+.pt-s{font-size:10px;letter-spacing:4px;text-transform:uppercase;}
 
-  .hero h1 {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(56px, 8vw, 96px);
-    line-height: .95;
-    letter-spacing: 2px;
-    animation: fadeInUp .9s .2s ease both;
-  }
-  @keyframes fadeInUp { from{opacity:0;transform:translateY(30px)} to{opacity:1;transform:translateY(0)} }
-  .hero h1 .accent { color: var(--cyan); display: block; }
-  .hero h1 .gold { color: var(--gold); }
+/* PULL QUOTE */
+.pull{border-left:3px solid;margin:52px 0;padding:32px 40px;}
+.pull p{font-family:'Playfair Display';font-size:clamp(20px,2.5vw,28px);font-style:italic;color:var(--white);line-height:1.4;margin:0;}
 
-  .hero-sub {
-    font-size: 17px; color: var(--muted); line-height: 1.8;
-    margin: 24px 0 40px;
-    animation: fadeInUp .9s .35s ease both;
-  }
+/* STATS */
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:var(--border);margin:52px 0;}
+.sbox{background:var(--card);padding:36px;text-align:center;}
+.sn{font-family:'Playfair Display';font-size:44px;font-weight:900;line-height:1;}
+.sl{font-size:12px;color:var(--muted);letter-spacing:1px;margin-top:10px;}
 
-  .hero-btns { display: flex; gap: 16px; animation: fadeInUp .9s .5s ease both; }
-  .btn-primary {
-    background: linear-gradient(135deg, var(--cyan), #0080ff);
-    color: var(--navy); padding: 14px 36px; border-radius: 8px;
-    font-weight: 800; font-size: 15px; text-decoration: none;
-    transition: transform .2s, box-shadow .2s;
-  }
-  .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 12px 32px rgba(0,212,255,.4); }
-  .btn-outline {
-    border: 1.5px solid var(--border); color: var(--white);
-    padding: 14px 36px; border-radius: 8px; font-weight: 600;
-    font-size: 15px; text-decoration: none; transition: border-color .3s, background .3s;
-  }
-  .btn-outline:hover { border-color: var(--cyan); background: rgba(0,212,255,.07); }
+/* ING GRID */
+.ing{display:flex;flex-direction:column;gap:2px;background:var(--border);margin:48px 0;}
+.irow{background:var(--card);padding:36px;display:grid;grid-template-columns:52px 1fr;gap:24px;align-items:start;}
+.iico{width:52px;height:52px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:22px;border:1px solid;}
+.inm{font-weight:600;font-size:17px;margin-bottom:8px;}
+.idsc{font-size:14px;color:var(--muted);line-height:1.7;}
 
-  .hero-stats {
-    position: absolute; left: 60px; bottom: 60px;
-    display: flex; gap: 48px;
-    animation: fadeInUp .9s .65s ease both;
-  }
-  .stat-item { text-align: center; }
-  .stat-num { font-family: 'Bebas Neue'; font-size: 42px; color: var(--cyan); line-height: 1; }
-  .stat-label { font-size: 12px; color: var(--muted); letter-spacing: 1px; margin-top: 4px; }
+/* BENEFITS */
+.ben{display:flex;flex-direction:column;gap:2px;background:var(--border);margin:48px 0;}
+.bitem{background:var(--card);padding:28px 36px;display:grid;grid-template-columns:48px 1fr;gap:20px;align-items:start;}
+.bnum{font-family:'Playfair Display';font-size:36px;font-weight:900;line-height:1;opacity:.22;}
+.btit{font-weight:600;font-size:16px;margin-bottom:8px;color:var(--white);}
+.bdsc{font-size:14px;color:var(--muted);line-height:1.7;}
 
-  /* ── FLOATING SHAPES ── */
-  .shape {
-    position: absolute; border-radius: 50%;
-    filter: blur(60px); pointer-events: none;
-  }
-  .shape-1 { width: 400px; height: 400px; background: rgba(0,212,255,.06); top: 10%; right: 5%; animation: float 8s ease-in-out infinite; }
-  .shape-2 { width: 250px; height: 250px; background: rgba(245,200,66,.05); bottom: 15%; right: 25%; animation: float 6s 2s ease-in-out infinite; }
-  @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-20px)} }
+/* CHECKLIST */
+.chk{display:flex;flex-direction:column;gap:14px;margin:36px 0;}
+.ci{display:flex;align-items:flex-start;gap:16px;font-size:15px;color:rgba(240,236,227,.82);line-height:1.55;}
+.cd{width:26px;min-width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;border:1px solid;}
 
-  /* ── SECTION COMMON ── */
-  section { padding: 100px 60px; position: relative; }
-  .section-label {
-    font-size: 11px; letter-spacing: 4px; text-transform: uppercase;
-    color: var(--cyan); margin-bottom: 12px; font-weight: 700;
-  }
-  .section-title {
-    font-family: 'Bebas Neue'; font-size: clamp(38px, 5vw, 60px);
-    line-height: 1; margin-bottom: 16px;
-  }
-  .section-desc { color: var(--muted); font-size: 16px; line-height: 1.8; max-width: 580px; }
-  .section-head { margin-bottom: 60px; }
-  .divider { width: 60px; height: 3px; background: linear-gradient(90deg, var(--cyan), transparent); margin: 20px 0; }
+/* GRID 2 */
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:2px;background:var(--border);margin:48px 0;}
+.g2c{background:var(--card);padding:32px;}
+.g2i{font-size:28px;margin-bottom:14px;}
+.g2t{font-weight:600;font-size:15px;color:var(--white);margin-bottom:8px;}
+.g2d{font-size:13px;color:var(--muted);line-height:1.65;}
 
-  /* ── PRODUCTS GRID ── */
-  .products { background: var(--deep); }
-  .products-grid {
-    display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 24px;
-  }
-  .product-card {
-    background: var(--card-bg);
-    border: 1px solid var(--border);
-    border-radius: 16px; padding: 32px;
-    transition: transform .3s, border-color .3s, box-shadow .3s;
-    position: relative; overflow: hidden;
-    cursor: default;
-  }
-  .product-card::before {
-    content: ''; position: absolute; inset: 0;
-    background: linear-gradient(135deg, rgba(0,212,255,.04), transparent);
-    opacity: 0; transition: opacity .3s;
-  }
-  .product-card:hover { transform: translateY(-6px); border-color: rgba(0,212,255,.4); box-shadow: 0 20px 40px rgba(0,0,0,.3); }
-  .product-card:hover::before { opacity: 1; }
-  .card-icon {
-    width: 52px; height: 52px; border-radius: 14px;
-    background: linear-gradient(135deg, rgba(0,212,255,.15), rgba(0,212,255,.05));
-    border: 1px solid rgba(0,212,255,.2);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 26px; margin-bottom: 20px;
-  }
-  .card-title { font-weight: 800; font-size: 18px; margin-bottom: 6px; }
-  .card-title-ar { font-size: 14px; color: var(--cyan); margin-bottom: 14px; font-weight: 600; }
-  .card-items { list-style: none; }
-  .card-items li {
-    font-size: 13px; color: var(--muted); padding: 5px 0;
-    border-bottom: 1px solid rgba(255,255,255,.04);
-    display: flex; align-items: center; gap: 8px;
-  }
-  .card-items li::before { content: '›'; color: var(--cyan); font-size: 16px; flex-shrink: 0; }
-  .card-items li:last-child { border-bottom: none; }
+/* SUPPLEMENT CARDS */
+.supp{display:grid;grid-template-columns:1fr 1fr;gap:2px;background:var(--border);margin:48px 0;}
+.sc{background:var(--card);padding:36px;}
+.sc.top{background:linear-gradient(135deg,#101808,#0e1510);}
+.sbadge{display:inline-block;font-size:9px;letter-spacing:3px;text-transform:uppercase;padding:4px 12px;margin-bottom:16px;background:var(--gold);color:var(--bg);}
+.snm{font-family:'Playfair Display';font-size:22px;font-weight:900;margin-bottom:8px;}
+.ssub{font-size:13px;margin-bottom:14px;}
+.sdsc{font-size:14px;color:var(--muted);line-height:1.7;margin-bottom:18px;}
+.slist{list-style:none;display:flex;flex-direction:column;gap:7px;}
+.slist li{font-size:13px;color:rgba(240,236,227,.7);display:flex;gap:8px;}
+.slist li::before{content:'→';flex-shrink:0;}
 
-  /* ── BRANDS STRIP ── */
-  .brands { padding: 60px; background: var(--navy); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
-  .brands-title { text-align: center; font-size: 12px; letter-spacing: 4px; color: var(--muted); text-transform: uppercase; margin-bottom: 40px; }
-  .brands-grid { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; }
-  .brand-pill {
-    background: var(--card-bg); border: 1px solid var(--border);
-    padding: 10px 24px; border-radius: 100px;
-    font-size: 13px; font-weight: 700; color: var(--muted);
-    transition: color .3s, border-color .3s;
-  }
-  .brand-pill:hover { color: var(--cyan); border-color: rgba(0,212,255,.4); }
+/* TABLE */
+.ctab{width:100%;border-collapse:collapse;margin:48px 0;background:var(--card);border:1px solid var(--border);}
+.ctab th{font-size:10px;letter-spacing:3px;text-transform:uppercase;padding:18px 22px;text-align:left;border-bottom:1px solid var(--border);font-weight:500;}
+.ctab td{padding:16px 22px;font-size:14px;color:rgba(240,236,227,.75);border-bottom:1px solid rgba(255,255,255,.04);}
+.ctab tr:last-child td{border-bottom:none;}
+.ctab tr:nth-child(even) td{background:rgba(255,255,255,.02);}
+.tnm{font-weight:600;color:var(--white);}
 
-  /* ── FEATURES ── */
-  .features-grid {
-    display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px;
-    background: var(--border);
-    border: 1px solid var(--border); border-radius: 20px; overflow: hidden;
-  }
-  .feature {
-    background: var(--card-bg); padding: 48px 36px;
-    transition: background .3s;
-  }
-  .feature:hover { background: rgba(13,30,53,0.9); }
-  .feature-num { font-family: 'Bebas Neue'; font-size: 56px; color: rgba(0,212,255,.15); line-height: 1; margin-bottom: 12px; }
-  .feature-title { font-weight: 800; font-size: 17px; margin-bottom: 10px; }
-  .feature-text { font-size: 14px; color: var(--muted); line-height: 1.7; }
+/* DOSAGE */
+.dos{background:var(--card);border:1px solid var(--border);padding:44px;margin:48px 0;}
+.dost{font-family:'Playfair Display';font-size:26px;margin-bottom:24px;}
+.dosr{display:flex;align-items:center;gap:24px;margin-bottom:20px;}
+.dosn{font-family:'Playfair Display';font-size:56px;font-weight:900;line-height:1;}
+.dosl{font-size:14px;color:var(--muted);line-height:1.6;}
+.dostips{display:flex;flex-direction:column;gap:12px;border-top:1px solid var(--border);padding-top:22px;margin-top:4px;}
+.dtip{font-size:14px;color:rgba(240,236,227,.72);display:flex;gap:10px;}
 
-  /* ── MACHINERY ── */
-  .machinery { background: var(--deep); }
-  .machinery-cards { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
-  .mach-card {
-    background: var(--card-bg); border: 1px solid var(--border);
-    border-radius: 16px; padding: 40px;
-    display: flex; gap: 24px; align-items: flex-start;
-    transition: transform .3s, border-color .3s;
-  }
-  .mach-card:hover { transform: translateY(-4px); border-color: rgba(0,212,255,.35); }
-  .mach-icon { font-size: 40px; flex-shrink: 0; }
-  .mach-title { font-weight: 800; font-size: 17px; margin-bottom: 6px; }
-  .mach-sub { font-size: 13px; color: var(--cyan); margin-bottom: 12px; }
-  .mach-desc { font-size: 13px; color: var(--muted); line-height: 1.7; }
+/* BEFORE / AFTER */
+.ba{display:grid;grid-template-columns:1fr 1fr;gap:2px;background:var(--border);margin:48px 0;}
+.bac{padding:40px;background:var(--card);}
+.bal{font-size:10px;letter-spacing:4px;text-transform:uppercase;font-weight:600;margin-bottom:22px;}
+.balist{list-style:none;display:flex;flex-direction:column;gap:12px;}
+.balist li{font-size:14px;color:rgba(240,236,227,.75);display:flex;gap:10px;align-items:flex-start;}
 
-  /* ── CONTACT ── */
-  .contact { background: var(--navy); }
-  .contact-inner {
-    background: linear-gradient(135deg, var(--card-bg), rgba(0,212,255,.05));
-    border: 1px solid var(--border); border-radius: 24px;
-    padding: 80px; display: grid; grid-template-columns: 1fr 1fr; gap: 80px;
-    align-items: center; position: relative; overflow: hidden;
-  }
-  .contact-inner::before {
-    content: ''; position: absolute; top: -100px; left: -100px;
-    width: 400px; height: 400px; border-radius: 50%;
-    background: radial-gradient(circle, rgba(0,212,255,.06), transparent);
-  }
-  .contact-info h2 { font-family: 'Bebas Neue'; font-size: 52px; line-height: 1; margin-bottom: 20px; }
-  .contact-info p { color: var(--muted); font-size: 16px; line-height: 1.8; margin-bottom: 40px; }
-  .contact-items { display: flex; flex-direction: column; gap: 20px; }
-  .contact-item { display: flex; align-items: center; gap: 16px; }
-  .c-icon {
-    width: 46px; height: 46px; border-radius: 12px;
-    background: rgba(0,212,255,.1); border: 1px solid rgba(0,212,255,.2);
-    display: flex; align-items: center; justify-content: center; font-size: 20px; flex-shrink: 0;
-  }
-  .c-label { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 2px; }
-  .c-value { font-size: 16px; font-weight: 700; color: var(--white); }
-  .contact-form { position: relative; }
-  .form-group { margin-bottom: 20px; }
-  .form-group label { display: block; font-size: 12px; color: var(--muted); margin-bottom: 8px; letter-spacing: 1px; }
-  .form-group input,
-  .form-group textarea,
-  .form-group select {
-    width: 100%; background: rgba(255,255,255,.04);
-    border: 1px solid var(--border); border-radius: 10px;
-    padding: 14px 18px; color: var(--white); font-family: 'Cairo', sans-serif;
-    font-size: 14px; transition: border-color .3s, background .3s;
-    outline: none; direction: rtl;
-  }
-  .form-group input:focus,
-  .form-group textarea:focus,
-  .form-group select:focus { border-color: rgba(0,212,255,.5); background: rgba(0,212,255,.04); }
-  .form-group textarea { height: 110px; resize: none; }
-  .form-group select option { background: var(--deep); }
-  .form-submit {
-    width: 100%; padding: 16px;
-    background: linear-gradient(135deg, var(--cyan), #0080ff);
-    border: none; border-radius: 10px;
-    color: var(--navy); font-family: 'Cairo', sans-serif;
-    font-size: 16px; font-weight: 800; cursor: pointer;
-    transition: transform .2s, box-shadow .2s;
-  }
-  .form-submit:hover { transform: translateY(-2px); box-shadow: 0 12px 28px rgba(0,212,255,.35); }
+/* PILLS */
+.pills{display:flex;flex-wrap:wrap;gap:10px;margin:32px 0;}
+.pill{font-size:13px;padding:8px 18px;font-weight:500;border:1px solid;}
 
-  /* ── FOOTER ── */
-  footer {
-    background: var(--deep); padding: 60px;
-    border-top: 1px solid var(--border);
-    display: flex; align-items: center; justify-content: space-between;
-    flex-wrap: wrap; gap: 24px;
-  }
-  .footer-logo { display: flex; align-items: center; gap: 12px; }
-  .footer-copy { font-size: 13px; color: var(--muted); }
-  .footer-copy span { color: var(--cyan); }
-  .footer-links { display: flex; gap: 24px; }
-  .footer-links a { color: var(--muted); font-size: 13px; text-decoration: none; transition: color .3s; }
-  .footer-links a:hover { color: var(--cyan); }
+/* VERDICT */
+.verdict{border:1px solid;padding:48px;margin:48px 0;}
+.vhead{display:flex;align-items:center;gap:16px;margin-bottom:22px;}
+.vbadge{font-size:9px;letter-spacing:3px;text-transform:uppercase;padding:6px 14px;color:var(--bg);}
+.vtit{font-family:'Playfair Display';font-size:28px;font-weight:900;}
+.vbody{font-size:16px;color:rgba(240,236,227,.8);line-height:1.82;}
+.vstars{display:flex;align-items:center;gap:12px;margin-top:22px;padding-top:22px;border-top:1px solid var(--border);}
+.vlbl{font-size:11px;color:var(--muted);letter-spacing:2px;text-transform:uppercase;}
 
-  /* ── SCROLL ANIMATIONS ── */
-  .reveal { opacity: 0; transform: translateY(24px); transition: opacity .7s ease, transform .7s ease; }
-  .reveal.visible { opacity: 1; transform: translateY(0); }
+/* FAQ */
+.faqs{display:flex;flex-direction:column;gap:2px;background:var(--border);margin:48px 0;}
+.fq{background:var(--card);padding:22px 32px;font-weight:600;font-size:15px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;transition:color .3s;}
+.fa{background:var(--card);padding:0 32px;font-size:14px;color:var(--muted);line-height:1.7;max-height:0;overflow:hidden;transition:max-height .4s ease,padding .3s;}
+.fa.open{max-height:200px;padding-bottom:22px;}
+.farr{font-size:12px;transition:transform .3s;}
 
-  /* ── RESPONSIVE ── */
-  @media (max-width: 1024px) {
-    nav { padding: 18px 30px; }
-    .nav-links { display: none; }
-    section { padding: 80px 30px; }
-    .hero { padding: 120px 30px 80px; }
-    .hero-stats { left: 30px; }
-    .features-grid { grid-template-columns: 1fr; }
-    .machinery-cards { grid-template-columns: 1fr; }
-    .contact-inner { grid-template-columns: 1fr; padding: 40px; gap: 40px; }
-    footer { padding: 40px 30px; }
-    .brands { padding: 40px 30px; }
-  }
-  @media (max-width: 640px) {
-    .hero h1 { font-size: 48px; }
-    .hero-btns { flex-direction: column; }
-    .hero-stats { position: static; margin-top: 48px; justify-content: flex-start; }
-    .products-grid { grid-template-columns: 1fr; }
-  }
+/* GEO */
+.geo{display:flex;flex-wrap:wrap;gap:12px;margin:32px 0;}
+.gpill{background:rgba(255,255,255,.04);border:1px solid var(--border);padding:10px 22px;font-size:13px;color:rgba(240,236,227,.7);display:flex;align-items:center;gap:8px;}
+
+/* CTA */
+.cta{padding:80px;margin:80px 0;text-align:center;position:relative;overflow:hidden;border:1px solid;}
+.cta::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at center,var(--cg,rgba(200,169,110,.05)),transparent);}
+.ceye{font-size:10px;letter-spacing:5px;text-transform:uppercase;margin-bottom:18px;}
+.ctit{font-family:'Playfair Display';font-size:clamp(28px,3.5vw,50px);font-weight:900;margin-bottom:18px;position:relative;}
+.ctit em{font-style:italic;}
+.cdsc{font-size:16px;color:var(--muted);line-height:1.8;max-width:520px;margin:0 auto 40px;}
+.cfeats{display:flex;justify-content:center;flex-wrap:wrap;gap:24px;margin-bottom:40px;}
+.cfeat{font-size:12px;color:var(--muted);display:flex;align-items:center;gap:6px;}
+.cfeat::before{content:'✓';}
+.cbtn{display:inline-block;padding:18px 52px;font-weight:700;font-size:14px;letter-spacing:2px;text-transform:uppercase;text-decoration:none;color:var(--bg);transition:transform .2s,box-shadow .2s;position:relative;}
+.cbtn:hover{transform:translateY(-3px);}
+.cnote{font-size:12px;color:var(--muted);margin-top:18px;position:relative;}
+
+/* SECTION DIVIDER */
+.sdiv{height:100px;display:flex;align-items:center;justify-content:center;background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);gap:20px;}
+.sdline{flex:1;height:1px;background:var(--border);}
+.sdlbl{font-size:10px;letter-spacing:5px;text-transform:uppercase;color:var(--muted);}
+
+/* RELATED */
+.relbar{background:var(--bg2);border-top:1px solid var(--border);}
+.relinn{max-width:780px;margin:0 auto;padding:60px 40px;}
+.reltit{font-family:'Playfair Display';font-size:26px;margin-bottom:28px;}
+.relgrid{display:grid;grid-template-columns:1fr 1fr;gap:2px;background:var(--border);}
+.relc{background:var(--card);padding:32px;text-decoration:none;display:block;transition:background .3s;}
+.relc:hover{background:#101820;}
+.relcat{font-size:10px;letter-spacing:3px;text-transform:uppercase;margin-bottom:10px;}
+.relt{font-family:'Playfair Display';font-size:18px;color:var(--white);line-height:1.2;}
+
+/* FOOTER */
+footer{padding:60px;border-top:1px solid var(--border);display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:48px;}
+.fb{font-family:'Playfair Display';font-size:30px;font-weight:900;color:var(--gold);margin-bottom:14px;}
+.fd{font-size:13px;color:var(--muted);line-height:1.75;}
+.fct{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:20px;}
+.flinks{display:flex;flex-direction:column;gap:12px;}
+.flinks a{color:var(--muted);text-decoration:none;font-size:13px;transition:color .3s;}
+.flinks a:hover{color:var(--gold);}
+.fbot{padding:24px 60px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;}
+.fcopy{font-size:12px;color:var(--muted);}
+.fdisc{font-size:11px;color:rgba(122,122,110,.5);max-width:520px;line-height:1.5;}
+
+/* REVEAL */
+.rv{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease;}
+.rv.visible{opacity:1;transform:translateY(0);}
+
+/* ── ARTICLE 1 accent (red) ── */
+#a1 .art-hbg{background:radial-gradient(ellipse at 60% 40%,rgba(200,78,61,.09),transparent 55%),linear-gradient(to bottom,transparent 40%,var(--bg) 100%);}
+#a1 .art-cat{color:var(--red);border-color:rgba(200,78,61,.4);}
+#a1 .art-h1 em{color:var(--red);}
+#a1 .pt-n,#a1 .bnum{color:var(--red);}
+#a1 .pt-s{color:var(--red);}
+#a1 .pull{border-color:var(--red);background:rgba(200,78,61,.04);}
+#a1 .sn{color:var(--red);}
+#a1 .iico{color:var(--red);border-color:rgba(200,78,61,.3);background:rgba(200,78,61,.08);}
+#a1 .inm{color:var(--red);}
+#a1 .cd{color:var(--red);border-color:rgba(200,78,61,.3);background:rgba(200,78,61,.08);}
+#a1 .art-body h2 em{color:var(--red);}
+#a1 .cta{border-color:rgba(200,78,61,.3);background:linear-gradient(135deg,#120608,#1a0908);--cg:rgba(200,78,61,.06);}
+#a1 .ceye{color:var(--red);}
+#a1 .ctit em{color:var(--red);}
+#a1 .cfeat::before{color:var(--red);}
+#a1 .cbtn{background:var(--red);}
+#a1 .cbtn:hover{box-shadow:0 14px 40px rgba(200,78,61,.4);}
+
+/* ── ARTICLE 2 accent (gold) ── */
+#a2 .art-hbg{background:radial-gradient(ellipse at 40% 50%,rgba(61,106,138,.1),transparent 60%),radial-gradient(ellipse at 80% 30%,rgba(200,169,110,.07),transparent 50%),linear-gradient(to bottom,transparent 40%,var(--bg) 100%);}
+#a2 .art-hgrid{background-image:radial-gradient(circle,rgba(200,169,110,.14) 1px,transparent 1px);background-size:48px 48px;}
+#a2 .art-cat{color:var(--gold);border-color:rgba(200,169,110,.4);}
+#a2 .art-h1 em{color:var(--gold);}
+#a2 .pt-n{color:var(--gold);}
+#a2 .pt-s{color:var(--gold);}
+#a2 .pull{border-color:var(--gold);background:rgba(200,169,110,.04);}
+#a2 .sn{color:var(--gold);}
+#a2 .dosn{color:var(--gold);}
+#a2 .dost em{color:var(--gold);}
+#a2 .ssub{color:var(--gold);}
+#a2 .slist li::before{color:var(--gold);}
+#a2 .ctab th{color:var(--gold);}
+#a2 .yes{color:var(--gold);}
+#a2 .no{color:var(--muted);}
+#a2 .art-body h2 em{color:var(--gold);}
+#a2 .cd{color:var(--gold);border-color:rgba(200,169,110,.3);background:rgba(200,169,110,.08);}
+#a2 .cta{border-color:rgba(200,169,110,.3);background:linear-gradient(135deg,#100e04,#18140a);--cg:rgba(200,169,110,.05);}
+#a2 .ceye{color:var(--gold);}
+#a2 .ctit em{color:var(--gold);}
+#a2 .cfeat::before{color:var(--gold);}
+#a2 .cbtn{background:var(--gold);}
+#a2 .cbtn:hover{box-shadow:0 14px 40px rgba(200,169,110,.35);}
+
+/* ── ARTICLE 3 accent (green) ── */
+#a3 .art-hbg{background:radial-gradient(ellipse at 50% 60%,rgba(82,168,120,.1),transparent 60%),radial-gradient(ellipse at 20% 20%,rgba(200,169,110,.05),transparent 50%),linear-gradient(to bottom,transparent 40%,var(--bg) 100%);}
+#a3 .art-cat{color:var(--green);border-color:rgba(82,168,120,.4);}
+#a3 .art-h1 em{color:var(--green);}
+#a3 .pt-n{color:var(--green);}
+#a3 .pt-s{color:var(--green);}
+#a3 .pull{border-color:var(--green);background:rgba(82,168,120,.04);}
+#a3 .sn{color:var(--green);}
+#a3 .pill{color:var(--green);border-color:rgba(82,168,120,.25);background:rgba(82,168,120,.07);}
+#a3 .cd{color:var(--green);border-color:rgba(82,168,120,.3);background:rgba(82,168,120,.08);}
+#a3 .art-body h2 em{color:var(--green);}
+#a3 .vbadge{background:var(--green);}
+#a3 .verdict{border-color:rgba(82,168,120,.3);background:linear-gradient(135deg,#0e1a10,#081408);}
+#a3 .vstars .stars{color:var(--green);}
+#a3 .fq:hover{color:var(--green);}
+#a3 .farr{color:var(--green);}
+#a3 .bac:first-child{background:rgba(200,50,50,.04);}
+#a3 .bac:last-child{background:rgba(82,168,120,.04);}
+#a3 .cta{border-color:rgba(82,168,120,.3);background:linear-gradient(135deg,#061008,#0a1a0c);--cg:rgba(82,168,120,.06);}
+#a3 .ceye{color:var(--green);}
+#a3 .ctit em{color:var(--green);}
+#a3 .cfeat::before{color:var(--green);}
+#a3 .cbtn{background:var(--green);}
+#a3 .cbtn:hover{box-shadow:0 14px 40px rgba(82,168,120,.35);}
+
+/* RESPONSIVE */
+@media(max-width:1024px){
+  nav{padding:0 24px;}
+  .n-links{display:none;}
+  #home{padding:100px 24px 80px;}
+  .h-cards{grid-template-columns:1fr;}
+  .art-hero{padding:100px 24px 60px;}
+  .art-body{padding:60px 24px;}
+  .stats,.g2,.supp,.ba,.relgrid{grid-template-columns:1fr;}
+  .irow,.bitem{grid-template-columns:1fr;}
+  .cta{padding:48px 24px;}
+  footer{padding:48px 24px;grid-template-columns:1fr;}
+  .fbot{padding:20px 24px;flex-direction:column;text-align:center;}
+  .relinn{padding:48px 24px;}
+}
+@media(max-width:640px){
+  .h-title{font-size:48px;}
+  .art-h1{font-size:38px;}
+}
 </style>
 </head>
 <body>
 
+<div id="cur"></div>
+<div id="ring"></div>
+<div id="prog"></div>
+
 <!-- NAV -->
 <nav>
-  <div class="nav-logo">
-    <div class="logo-icon">⚡</div>
-    <div class="logo-text">
-      FLASH
-      <span>TRADING COMPANY</span>
-    </div>
+  <div>
+    <a href="#home" class="n-brand">Vital<span>Edge</span></a>
+    <div class="n-tag">Science-Backed Performance</div>
   </div>
-  <ul class="nav-links">
-    <li><a href="#products">المنتجات</a></li>
-    <li><a href="#machinery">المعدات</a></li>
-    <li><a href="#why">لماذا فلاش</a></li>
-    <li><a href="#contact">تواصل معنا</a></li>
+  <ul class="n-links">
+    <li><a href="#home">Home</a></li>
+    <li><a href="#a1" data-art="1">Nitric Oxide</a></li>
+    <li><a href="#a2" data-art="2">Blood Flow</a></li>
+    <li><a href="#a3" data-art="3">Moringa</a></li>
   </ul>
-  <a href="tel:+97466667795" class="nav-cta">📞 اتصل الآن</a>
 </nav>
 
-<!-- HERO -->
-<section class="hero">
-  <div class="hero-bg"></div>
-  <div class="hero-grid"></div>
-  <div class="shape shape-1"></div>
-  <div class="shape shape-2"></div>
-
-  <div class="hero-content">
-    <div class="hero-badge">
-      <span class="badge-dot"></span>
-      شركة رائدة في قطر · الدوحة
-    </div>
-    <h1>
-      معدات الغسيل
-      <span class="accent">الاحترافية</span>
-      <span class="gold">FLASH</span>
-    </h1>
-    <p class="hero-sub">
-      المورد الأول لمعدات وإكسسوارات الغسيل والتنظيف الجاف في قطر.<br>
-      منتجات عالية الجودة · أسعار تنافسية · خدمة متميزة
-    </p>
-    <div class="hero-btns">
-      <a href="#products" class="btn-primary">استكشف المنتجات</a>
-      <a href="#contact" class="btn-outline">طلب عرض سعر</a>
-    </div>
-  </div>
-
-  <div class="hero-stats">
-    <div class="stat-item">
-      <div class="stat-num">500+</div>
-      <div class="stat-label">منتج متاح</div>
-    </div>
-    <div class="stat-item">
-      <div class="stat-num">10+</div>
-      <div class="stat-label">فئة منتجات</div>
-    </div>
-    <div class="stat-item">
-      <div class="stat-num">24/7</div>
-      <div class="stat-label">دعم العملاء</div>
-    </div>
+<!-- HOME -->
+<section id="home">
+  <div class="h-bg"></div><div class="h-grid"></div>
+  <div class="h-eye">The Performance Intelligence Journal</div>
+  <h1 class="h-title">Your Body.<br><em>Optimized.</em><span class="sub">Science-backed guides on supplements, energy &amp; peak performance</span></h1>
+  <p class="h-desc">We cut through the noise to deliver research-grounded insights on Nitric Oxide, CoQ10, and Moringa — the biology behind how men can reclaim their edge, naturally.</p>
+  <div class="h-cards">
+    <a href="#a1" class="h-card"><div class="h-card-bar"></div><div class="h-num">01</div><div class="h-cat">Peak Performance · 8 min</div><div class="h-ctitle">The Science of Peak Performance &amp; Nitric Oxide</div><div class="h-cdesc">Discover why most men lose 50% of their Nitric Oxide by 40 — and the natural path back to vitality, stamina, and confidence.</div><div class="h-cread">Read Article →</div></a>
+    <a href="#a2" class="h-card"><div class="h-card-bar"></div><div class="h-num">02</div><div class="h-cat">Cardiovascular · 6 min</div><div class="h-ctitle">Best Supplements for Blood Flow: Why CoQ10 Leads</div><div class="h-cdesc">A deep dive into CoQ10, L-Citrulline, Beetroot, and Garlic — and why Coenzyme Q10 offers a dual benefit no other supplement can match.</div><div class="h-cread">Read Article →</div></a>
+    <a href="#a3" class="h-card"><div class="h-card-bar"></div><div class="h-num">03</div><div class="h-cat">Natural Energy · 5 min</div><div class="h-ctitle">Is Moringa the Best Natural Energy Supplement?</div><div class="h-cdesc">An honest verdict on the "Miracle Tree" — what it actually does, who benefits most, and how to choose a quality product.</div><div class="h-cread">Read Article →</div></a>
   </div>
 </section>
 
-<!-- BRANDS -->
-<div class="brands">
-  <div class="brands-title">العلامات التجارية التي نوفرها</div>
-  <div class="brands-grid">
-    <div class="brand-pill">FLASH</div>
-    <div class="brand-pill">ALPHA</div>
-    <div class="brand-pill">TIGER</div>
-    <div class="brand-pill">PEARL</div>
-    <div class="brand-pill">EXTRA CLEAN</div>
-    <div class="brand-pill">DELTAPER</div>
-    <div class="brand-pill">DANUBE</div>
-    <div class="brand-pill">ROTONDI</div>
-    <div class="brand-pill">PONY</div>
-    <div class="brand-pill">RUSTGO</div>
-    <div class="brand-pill">INKGO</div>
-    <div class="brand-pill">YELLOWGO</div>
-    <div class="brand-pill">MAGIC</div>
-    <div class="brand-pill">PILOT</div>
-    <div class="brand-pill">NIAGARA</div>
+<!-- TICKER -->
+<div class="ticker"><div class="ticker-inner">
+  <span class="t-item">Nitric Oxide &amp; Vitality</span><span class="t-item">CoQ10 &amp; Blood Flow</span><span class="t-item">Moringa &amp; Energy</span><span class="t-item">L-Arginine Research</span><span class="t-item">Beetroot Extract</span><span class="t-item">Cardiovascular Health</span><span class="t-item">Plant-Based Nutrition</span><span class="t-item">Male Performance Science</span>
+  <span class="t-item">Nitric Oxide &amp; Vitality</span><span class="t-item">CoQ10 &amp; Blood Flow</span><span class="t-item">Moringa &amp; Energy</span><span class="t-item">L-Arginine Research</span><span class="t-item">Beetroot Extract</span><span class="t-item">Cardiovascular Health</span><span class="t-item">Plant-Based Nutrition</span><span class="t-item">Male Performance Science</span>
+</div></div>
+
+<!-- ═══ ARTICLE 1 — NITRIC OXIDE ═══ -->
+<section id="a1" class="art-section">
+<div class="art-hero">
+  <div class="art-hbg"></div><div class="art-hgrid"></div>
+  <div class="art-hc">
+    <div class="art-cat">Peak Performance · Men's Health · 8 min read</div>
+    <h1 class="art-h1">The Science of <em>Peak Performance:</em><br>Restore Vitality Naturally</h1>
+    <div class="art-meta"><span class="art-tag">Nitric Oxide</span><span class="art-tag">Fatigue Recovery</span><span class="art-tag">Sexual Health</span><span class="art-tag">Cardiovascular</span></div>
+    <p class="art-lead">"When your energy levels dip and performance declines, your body is signaling an underlying circulation issue — one that has a natural, research-backed solution."</p>
   </div>
 </div>
-
-<!-- PRODUCTS -->
-<section id="products" class="products">
-  <div class="section-head reveal">
-    <div class="section-label">كتالوج المنتجات</div>
-    <h2 class="section-title">جميع فئات منتجاتنا</h2>
-    <div class="divider"></div>
-    <p class="section-desc">نوفر كل ما تحتاجه مغسلتك من مواد ومعدات وإكسسوارات بأعلى معايير الجودة</p>
+<article class="art-body">
+  <div class="pt rv"><div class="pt-n">01</div><div class="pt-l"></div><div class="pt-s">The Invisible Crisis</div></div>
+  <h2 class="rv">The <em>Invisible Crisis</em> of Male Energy</h2>
+  <p class="rv">Have you ever woken up after a full eight hours of sleep, only to feel as though you haven't rested at all? For many men, this persistent cloud of fatigue isn't just a sign of a busy schedule — it is a physiological signal that something deeper is off.</p>
+  <p class="rv">In the modern world, men are under more pressure than ever. Between career demands and personal responsibilities, the "burnout" phase often sets in prematurely. The symptoms run deeper than mental exhaustion: persistent fatigue, reduced stamina, performance anxiety, and poor circulation manifesting as cold extremities or slow muscle recovery.</p>
+  <div class="stats rv">
+    <div class="sbox"><div class="sn">50%</div><div class="sl">Less Nitric Oxide produced by age 40</div></div>
+    <div class="sbox"><div class="sn">8 hrs</div><div class="sl">Sleep — still waking up drained?</div></div>
+    <div class="sbox"><div class="sn">1 in 3</div><div class="sl">Men report chronic fatigue</div></div>
   </div>
-
-  <div class="products-grid">
-    <!-- 1 -->
-    <div class="product-card reveal">
-      <div class="card-icon">🧴</div>
-      <div class="card-title">Liquid Laundry Supplies</div>
-      <div class="card-title-ar">مستلزمات الغسيل السائلة</div>
-      <ul class="card-items">
-        <li>Alpha Laundry Emulsifier – 20L</li>
-        <li>Flash Abaya Shampoo – 20L</li>
-        <li>Flash Fabric Softener (Original & Flowers) – 30L</li>
-        <li>Flash Bleach Cleaner Chlorine – 30L</li>
-        <li>Extra Clean Emulsifier – 30L</li>
-        <li>Alpha Aroma Sense Fabric Softener – 20L</li>
-        <li>Alfa Aroma Soft Fabric Softener – 20L</li>
-        <li>Alpha Fabric Softener – 20L</li>
-        <li>Liquid Detergent – 30L</li>
-        <li>Fabric Softener Premium – 30L</li>
-        <li>Scarpavapor Shoe Chemical – 5L</li>
-      </ul>
-    </div>
-
-    <!-- 2 -->
-    <div class="product-card reveal">
-      <div class="card-icon">⚗️</div>
-      <div class="card-title">Laundry Chemicals</div>
-      <div class="card-title-ar">مواد كيميائية للغسيل</div>
-      <ul class="card-items">
-        <li>Bleach & Deodorizer – Hydro Powder 1KG</li>
-        <li>Deltaper Foam Cleaner / Chlore – 330KG</li>
-        <li>Dry Cleaning Perchlorethylene – Deltaper Pure Power 23KG</li>
-        <li>Perklone Dry Clean Chemical – 330KG (Made in UK)</li>
-        <li>Caustic Soda – 25KG</li>
-        <li>Soda Ash Light – 25KG</li>
-      </ul>
-    </div>
-
-    <!-- 3 -->
-    <div class="product-card reveal">
-      <div class="card-icon">🧹</div>
-      <div class="card-title">Stain Removers</div>
-      <div class="card-title-ar">مزيلات البقع</div>
-      <ul class="card-items">
-        <li>Flash Stain Remover</li>
-        <li>Tar Clean – مزيل بقع تار كلين</li>
-        <li>Targo Dry – 1L</li>
-        <li>Blood Clean – مزيل الدم</li>
-        <li>Ink Clean – مزيل الحبر</li>
-        <li>Bev Clean – مزيل المشروبات</li>
-        <li>Rust Clean / RustGo – مزيل الصدأ</li>
-        <li>InkGo – مزيل الحبر الأمريكي</li>
-        <li>BonGo – مزيل بقع</li>
-        <li>QwikGo – مزيل بقع</li>
-        <li>YellowGo – مزيل صبغة الصفراء</li>
-      </ul>
-    </div>
-
-    <!-- 4 -->
-    <div class="product-card reveal">
-      <div class="card-icon">🪣</div>
-      <div class="card-title">Powder Laundry Detergent</div>
-      <div class="card-title-ar">مسحوق غسيل</div>
-      <ul class="card-items">
-        <li>Pearl Automatic – 25KG</li>
-        <li>Pearl High Foam – 25KG</li>
-        <li>Tiger Automatic Low Foam – 25KG</li>
-        <li>Tiger High Foam – 25KG</li>
-        <li>Flash Soap Powder Low Foam – 25KG</li>
-        <li>Magic Low Foam – 25KG</li>
-      </ul>
-    </div>
-
-    <!-- 5 -->
-    <div class="product-card reveal">
-      <div class="card-icon">🌸</div>
-      <div class="card-title">Fabric Fresheners & Ironing Cleaning</div>
-      <div class="card-title-ar">معطر الأقمشة + تنظيف آلة الكي</div>
-      <ul class="card-items">
-        <li>Loyal Air Freshener – 450ML</li>
-        <li>Sabaya Freshener – 500ML</li>
-        <li>Fresh "N" Air Freshener – 5L</li>
-        <li>Ez-Off Ironing Cleaning Tube</li>
-        <li>للملابس والبطانيات والشراشف</li>
-      </ul>
-    </div>
-
-    <!-- 6 -->
-    <div class="product-card reveal">
-      <div class="card-icon">✒️</div>
-      <div class="card-title">Markers & Labeling</div>
-      <div class="card-title-ar">أقلام وأدوات الوسم</div>
-      <ul class="card-items">
-        <li>Pilot Twin Markers (Fine + Extra Fine)</li>
-        <li>Pilot SCA-400 Permanent Marker – Broad</li>
-        <li>SCA-TM Twin Point Marker</li>
-        <li>Laundry Label (Tagging)</li>
-        <li>Tagging Gun – USA / India / Korea / China</li>
-        <li>Tagging Gun Fasteners & Needles</li>
-      </ul>
-    </div>
-
-    <!-- 7 -->
-    <div class="product-card reveal">
-      <div class="card-icon">🔧</div>
-      <div class="card-title">Iron Equipment</div>
-      <div class="card-title-ar">معدات كي</div>
-      <ul class="card-items">
-        <li>Ketco Iron – 12 & 14 Pounds</li>
-        <li>Braso Iron – 12 & 14 Pounds</li>
-        <li>Stirolux Electric Steam Machine – 12 & 14 Pounds</li>
-        <li>Element – 1000W / 1250W / 1500W</li>
-        <li>Silicone Ironing Pad – وسادة سيليكون</li>
-        <li>Iron Cable – كابل المكواة</li>
-        <li>Soleplate of Steam Iron – Teflon Shoe Original</li>
-      </ul>
-    </div>
-
-    <!-- 8 -->
-    <div class="product-card reveal">
-      <div class="card-icon">💧</div>
-      <div class="card-title">Starch Liquid & Spray</div>
-      <div class="card-title-ar">سائل النشا + بخاخ النشا</div>
-      <ul class="card-items">
-        <li>Starch Liquid – 5L / 20L</li>
-        <li>Faultless Niagara Ironing Spray Starch</li>
-        <li>Merito Original Clothes Spray</li>
-        <li>Fid Fad Anti-Static Clothes Spray</li>
-      </ul>
-    </div>
-
-    <!-- 9 -->
-    <div class="product-card reveal">
-      <div class="card-icon">🛍️</div>
-      <div class="card-title">Laundry Bags</div>
-      <div class="card-title-ar">أكياس الغسيل</div>
-      <ul class="card-items">
-        <li>Flash Plastic Roll Laundry Bags – 5KG / 20KG</li>
-        <li>Transparent & Free From Impurities</li>
-        <li>Mesh Laundry Bag – شنطة غسيل</li>
-      </ul>
-    </div>
-
-    <!-- 10 -->
-    <div class="product-card reveal">
-      <div class="card-icon">📦</div>
-      <div class="card-title">Accessories</div>
-      <div class="card-title-ar">اكسسوارات</div>
-      <ul class="card-items">
-        <li>Hangers – 1.9 / 2.2 / 2.3 / 2.5 / 2.6 MM (Regular & Gold)</li>
-        <li>Shoulder & Trouser Guards</li>
-        <li>Thermopatch Tape (Standard & USA)</li>
-        <li>Shirt Board / Garment Rack / Garment Clips</li>
-        <li>Plastic Trolley – 350L / 500L / 700L</li>
-        <li>Lint Rollers / Fabric Brush</li>
-        <li>Steam Table Cover / Iron Mat</li>
-        <li>Polyester White Padding (Italian)</li>
-        <li>Thermal Paper / Electric Plug / Tape / Register Book</li>
-        <li>Sticky Notes / Notebook / Terminal Pin</li>
-      </ul>
-    </div>
+  <p class="rv">While many attribute these changes to "just getting older," <strong>the real culprit often lies within the lining of your blood vessels.</strong></p>
+  <div class="pt rv"><div class="pt-n">02</div><div class="pt-l"></div><div class="pt-s">The Science</div></div>
+  <h2 class="rv">Nitric Oxide — The <em>"Miracle Molecule"</em></h2>
+  <p class="rv">To understand vitality, you must understand Nitric Oxide (NO). This naturally occurring compound acts as a vasodilator: its primary job is to relax the inner muscles of your blood vessels, causing them to widen and allow greater blood flow throughout the body.</p>
+  <div class="pull rv"><p>"Think of your circulatory system as a network of highways. When Nitric Oxide levels are high, the lanes are wide open — oxygen-rich blood reaches your heart, muscles, and organs instantly."</p></div>
+  <p class="rv">As we age — or due to high stress and a sedentary lifestyle — our body's ability to produce Nitric Oxide drops significantly. By the age of 40, most men produce about <strong>50% less Nitric Oxide</strong> than they did in their 20s. When the "highways" narrow, energy drops and performance suffers across every dimension of life.</p>
+  <div class="pt rv"><div class="pt-n">03</div><div class="pt-l"></div><div class="pt-s">Natural Solution</div></div>
+  <h2 class="rv">Nitric Boost Ultra — <em>Key Ingredients</em></h2>
+  <p class="rv">Rather than relying on temporary stimulants or synthetic chemicals that cause a "crash," the most effective way to restore performance is to support the body's internal production of Nitric Oxide.</p>
+  <div class="ing rv">
+    <div class="irow"><div class="iico">🧬</div><div><div class="inm">L-Arginine</div><p class="idsc">The direct amino acid precursor to Nitric Oxide, essential for arterial health and blood vessel relaxation — the foundational building block of the entire NO pathway.</p></div></div>
+    <div class="irow"><div class="iico">⚡</div><div><div class="inm">L-Citrulline</div><p class="idsc">Often more effective than Arginine alone because it stays in the system longer, ensuring a sustained boost in Nitric Oxide levels throughout the entire day — not just in the morning.</p></div></div>
+    <div class="irow"><div class="iico">🌿</div><div><div class="inm">Beetroot Extract</div><p class="idsc">Rich in natural nitrates, clinically shown to improve cardiorespiratory endurance and lower the oxygen cost of exercise — a natural, plant-based performance enhancer.</p></div></div>
   </div>
+  <div class="pt rv"><div class="pt-n">04</div><div class="pt-l"></div><div class="pt-s">Real-World Benefits</div></div>
+  <h2 class="rv"><em>Real-World</em> Benefits</h2>
+  <div class="ben rv">
+    <div class="bitem"><div class="bnum">1</div><div><div class="btit">Explosive Energy and Stamina</div><p class="bdsc">Better blood flow means more oxygen delivered to your cells — higher natural energy levels without caffeine jitters, sustained throughout the full day.</p></div></div>
+    <div class="bitem"><div class="bnum">2</div><div><div class="btit">Enhanced Physical Performance</div><p class="bdsc">Improved vasodilation allows a better "pump" and faster removal of lactic acid. Train harder, recover faster, and break through performance plateaus.</p></div></div>
+    <div class="bitem"><div class="bnum">3</div><div><div class="btit">Sexual Health and Confidence</div><p class="bdsc">Sexual performance is essentially a matter of healthy blood flow. Men with optimized vascular function consistently report significant improvements in performance and confidence.</p></div></div>
+    <div class="bitem"><div class="bnum">4</div><div><div class="btit">Long-Term Cardiovascular Support</div><p class="bdsc">Maintaining flexible, relaxed blood vessels is one of the cornerstones of heart health — a benefit that compounds over years of consistent supplementation.</p></div></div>
+  </div>
+  <div class="pt rv"><div class="pt-n">05</div><div class="pt-l"></div><div class="pt-s">Is This for You?</div></div>
+  <h2 class="rv">Is This <em>Right for You?</em></h2>
+  <div class="chk rv">
+    <div class="ci"><div class="cd">✓</div>You feel stuck in a persistent cycle of low energy</div>
+    <div class="ci"><div class="cd">✓</div>Your workouts have plateaued and you feel weaker than before</div>
+    <div class="ci"><div class="cd">✓</div>You want a natural, non-invasive way to improve bedroom performance</div>
+    <div class="ci"><div class="cd">✓</div>You prefer plant-based support over synthetic drugs</div>
+    <div class="ci"><div class="cd">✓</div>You're over 35 and noticing a meaningful decline in stamina</div>
+  </div>
+  <div class="pt rv"><div class="pt-n">06</div><div class="pt-l"></div><div class="pt-s">Maximize Results</div></div>
+  <h2 class="rv">How to <em>Maximize</em> Your Results</h2>
+  <div class="chk rv">
+    <div class="ci"><div class="cd">💧</div><strong>Hydration:</strong>&nbsp;Nitric Oxide works best when blood volume is maintained through proper water intake — aim for 2–3L daily</div>
+    <div class="ci"><div class="cd">🥗</div><strong>Clean Diet:</strong>&nbsp;Avoid excessive processed sugars that damage the endothelium, the critical lining of your blood vessels</div>
+    <div class="ci"><div class="cd">📅</div><strong>Consistency:</strong>&nbsp;Natural supplements work cumulatively — daily use allows ingredients to build up for lasting, compounding benefits</div>
+  </div>
+  <div class="cta rv">
+    <div class="ceye">Featured Supplement</div>
+    <h3 class="ctit">Nitric Boost <em>Ultra</em></h3>
+    <p class="cdsc">Scientifically formulated with L-Arginine, L-Citrulline, and Beetroot Extract to restore your body's natural Nitric Oxide production and reclaim your true performance edge.</p>
+    <div class="cfeats"><span class="cfeat">L-Arginine + L-Citrulline</span><span class="cfeat">Beetroot Extract</span><span class="cfeat">No Synthetic Stimulants</span><span class="cfeat">Plant-Based Formula</span></div>
+    <a href="#" class="cbtn">Discover Nitric Boost Ultra →</a>
+    <p class="cnote">* Always consult a healthcare professional before starting any supplement regimen</p>
+  </div>
+</article>
+<div class="relbar"><div class="relinn"><div class="reltit">Continue Reading</div><div class="relgrid">
+  <a href="#a2" class="relc"><div class="relcat" style="color:var(--gold)">Blood Flow · Cardiovascular</div><div class="relt">Best Supplements for Blood Flow: Why CoQ10 Leads</div></a>
+  <a href="#a3" class="relc"><div class="relcat" style="color:var(--green)">Natural Energy · Plant-Based</div><div class="relt">Is Moringa the Best Natural Energy Supplement?</div></a>
+</div></div></div>
 </section>
 
-<!-- MACHINERY -->
-<section id="machinery" class="machinery">
-  <div class="section-head reveal">
-    <div class="section-label">معدات ثقيلة</div>
-    <h2 class="section-title">معدات الغسيل والتنظيف الجاف</h2>
-    <div class="divider"></div>
-    <p class="section-desc">أحدث الماكينات الأوروبية للغسيل الاحترافي والتنظيف الجاف</p>
+<!-- SECTION DIVIDER -->
+<div class="sdiv"><div class="sdline"></div><div class="sdlbl">Article 02 — Blood Flow</div><div class="sdline"></div></div>
+
+<!-- ═══ ARTICLE 2 — CoQ10 ═══ -->
+<section id="a2" class="art-section">
+<div class="art-hero">
+  <div class="art-hbg"></div><div class="art-hgrid"></div>
+  <div class="art-hc">
+    <div class="art-cat">Cardiovascular Health · Blood Flow · 6 min read</div>
+    <h1 class="art-h1">Best Supplements for <em>Blood Flow:</em><br>Why CoQ10 Leads</h1>
+    <div class="art-meta"><span class="art-tag">Circulation Science</span><span class="art-tag">Heart Health</span><span class="art-tag">CoQ10 Research</span><span class="art-tag">Vascular Support</span></div>
+    <p class="art-lead">"Healthy blood flow is the foundation of energy, vitality, and longevity — and CoQ10 is the one supplement that supports both the heart and the blood vessels simultaneously."</p>
   </div>
-  <div class="machinery-cards">
-    <div class="mach-card reveal">
-      <div class="mach-icon">🌊</div>
-      <div>
-        <div class="mach-title">DANUBE – Washing Machine</div>
-        <div class="mach-sub">صناعة فرنسية</div>
-        <p class="mach-desc">ماكينة غسيل صناعية عالية الكفاءة من دانوب الفرنسية، مصممة للاستخدام المكثف في المغاسل الاحترافية مع نظام تحكم رقمي متطور.</p>
-      </div>
-    </div>
-    <div class="mach-card reveal">
-      <div class="mach-icon">🌬️</div>
-      <div>
-        <div class="mach-title">DANUBE – Dryer Machine</div>
-        <div class="mach-sub">صناعة فرنسية</div>
-        <p class="mach-desc">مجفف صناعي متكامل بتقنية التحكم الدقيق في الحرارة، يضمن تجفيفاً سريعاً وآمناً لجميع أنواع الأقمشة.</p>
-      </div>
-    </div>
-    <div class="mach-card reveal">
-      <div class="mach-icon">♨️</div>
-      <div>
-        <div class="mach-title">Rotondi 388/AC – Steam Ironing Table</div>
-        <div class="mach-sub">صناعة إيطالية</div>
-        <p class="mach-desc">طاولة كي بخارية إيطالية الصنع مزودة بغلاية بخار داخلية وفراغ تلقائي، من أفضل ماكينات الكي الاحترافية في السوق.</p>
-      </div>
-    </div>
-    <div class="mach-card reveal">
-      <div class="mach-icon">⚡</div>
-      <div>
-        <div class="mach-title">Pony Classic 110 – Iron Table</div>
-        <div class="mach-sub">مع غلاية ووحدة فراغ</div>
-        <p class="mach-desc">طاولة كي كهربائية متكاملة بغلاية بخار ووحدة شفط هواء، تأتي مع مكواة بخارية كهربائية بمفتاح تحكم خارجي.</p>
-      </div>
-    </div>
-    <div class="mach-card reveal">
-      <div class="mach-icon">📦</div>
-      <div>
-        <div class="mach-title">IMESA IMA2/W – Garment Wrapping Machine</div>
-        <div class="mach-sub">220-250V / 50-60Hz</div>
-        <p class="mach-desc">ماكينة تغليف ملابس تُركّب على الجدار، موفرة للمساحة ومصممة للإنتاج الكثيف في المغاسل التجارية والفندقية.</p>
-      </div>
-    </div>
-    <div class="mach-card reveal">
-      <div class="mach-icon">🔬</div>
-      <div>
-        <div class="mach-title">Stain Removal Equipment</div>
-        <div class="mach-sub">معدات إزالة البقع المتخصصة</div>
-        <p class="mach-desc">منظومة متكاملة من أجهزة إزالة البقع المتخصصة لمختلف أنواع التلوث: الدم، الحبر، الصدأ، الزيوت، ومواد التنظيف الجاف.</p>
-      </div>
+</div>
+<article class="art-body">
+  <div class="pt rv"><div class="pt-n">01</div><div class="pt-l"></div><div class="pt-s">Why It Matters</div></div>
+  <h2 class="rv">Why <em>Healthy Blood Flow</em> Is Foundational</h2>
+  <p class="rv">Your circulatory system transports oxygen, hormones, and nutrients throughout the body. Healthy blood vessels expand and contract easily, allowing blood to move smoothly through every tissue and organ. When circulation is compromised, the downstream effects are felt across every system in the body.</p>
+  <div class="g2 rv">
+    <div class="g2c"><div class="g2i">😴</div><div class="g2t">Low Energy</div><p class="g2d">Cells don't receive sufficient oxygen for efficient energy production — leading to persistent fatigue regardless of sleep quality.</p></div>
+    <div class="g2c"><div class="g2i">🥶</div><div class="g2t">Cold Extremities</div><p class="g2d">Poor peripheral circulation causes chronically cold hands and feet — a classic marker of vascular dysfunction.</p></div>
+    <div class="g2c"><div class="g2i">💪</div><div class="g2t">Muscle Fatigue</div><p class="g2d">Inadequate blood flow reduces oxygen delivery to muscles during exercise, limiting performance and slowing recovery.</p></div>
+    <div class="g2c"><div class="g2i">❤️</div><div class="g2t">Cardiovascular Risk</div><p class="g2d">Long-term poor circulation is a significant risk factor for hypertension and cardiovascular disease over time.</p></div>
+  </div>
+  <h2 class="rv">What <em>Causes</em> Poor Circulation?</h2>
+  <div class="g2 rv">
+    <div class="g2c"><div class="g2i">🪑</div><div class="g2t">Physical Inactivity</div><p class="g2d">Sitting for long periods slows circulation and reduces vascular flexibility — even in people who exercise regularly.</p></div>
+    <div class="g2c"><div class="g2i">🍔</div><div class="g2t">Unhealthy Diet</div><p class="g2d">High-sugar and processed-food diets damage blood vessels and accelerate endothelial dysfunction over time.</p></div>
+    <div class="g2c"><div class="g2i">⏳</div><div class="g2t">Aging</div><p class="g2d">Blood vessels become less flexible with age — and CoQ10 levels in the body decline in parallel, compounding the effect.</p></div>
+    <div class="g2c"><div class="g2i">😰</div><div class="g2t">Chronic Stress</div><p class="g2d">Sustained stress increases blood pressure and reduces circulation, creating cumulative cardiovascular strain.</p></div>
+  </div>
+  <div class="pt rv"><div class="pt-n">02</div><div class="pt-l"></div><div class="pt-s">Top Supplements</div></div>
+  <h2 class="rv">Best <em>Supplements</em> for Blood Flow</h2>
+  <div class="supp rv">
+    <div class="sc top"><div class="sbadge">⭐ Top Pick</div><div class="snm">CoQ10</div><div class="ssub">Coenzyme Q10 — Dual-Action</div><p class="sdsc">The only supplement that improves both energy production AND vascular health simultaneously. Naturally concentrated in the heart, liver, and kidneys.</p><ul class="slist"><li>Supports cellular energy production</li><li>Protects vessels from oxidative stress</li><li>Improves heart muscle function directly</li><li>Enhances overall circulation</li><li>Levels decline with age — critical to supplement</li></ul></div>
+    <div class="sc"><div class="snm">L-Citrulline</div><div class="ssub">Nitric Oxide Precursor</div><p class="sdsc">An amino acid that helps the body produce nitric oxide, relaxing blood vessels for improved flow — popular with athletes.</p><ul class="slist"><li>Improves circulation</li><li>Enhances athletic performance</li><li>Supports muscle recovery</li><li>Helps reduce blood pressure</li></ul></div>
+    <div class="sc"><div class="snm">Beetroot Extract</div><div class="ssub">Natural Nitrate Source</div><p class="sdsc">Rich in dietary nitrates that convert to nitric oxide — a natural vasodilator widely used across endurance sports.</p><ul class="slist"><li>Improves blood vessel dilation</li><li>Enhances exercise endurance</li><li>Supports heart health</li><li>Helps lower blood pressure</li></ul></div>
+    <div class="sc"><div class="snm">Garlic Extract</div><div class="ssub">Traditional Cardiovascular Support</div><p class="sdsc">Used in natural medicine for centuries — modern research confirms garlic's measurable effects on circulation and vascular health.</p><ul class="slist"><li>Supports healthy blood pressure</li><li>Improves blood vessel flexibility</li><li>Helps reduce cholesterol</li><li>Broad cardiovascular support</li></ul></div>
+  </div>
+  <div class="pt rv"><div class="pt-n">03</div><div class="pt-l"></div><div class="pt-s">Why CoQ10 Wins</div></div>
+  <h2 class="rv">Why CoQ10 Is <em>Different</em></h2>
+  <p class="rv">Although many supplements support circulation, CoQ10 is unique because it improves both energy production and vascular health at the same time. Unlike nitric oxide boosters that mainly affect blood vessels, CoQ10 also directly supports the heart muscle.</p>
+  <div class="pull rv"><p>"The heart requires massive amounts of energy to pump blood 24 hours a day. CoQ10 provides that energy — while simultaneously protecting heart cells from oxidative damage."</p></div>
+  <table class="ctab rv">
+    <thead><tr><th>Supplement</th><th>Blood Vessels</th><th>Heart Muscle</th><th>Cell Energy</th><th>Antioxidant</th></tr></thead>
+    <tbody>
+      <tr><td class="tnm">CoQ10</td><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td></tr>
+      <tr><td class="tnm">L-Citrulline</td><td class="yes">✓</td><td class="no">—</td><td class="no">—</td><td class="no">—</td></tr>
+      <tr><td class="tnm">Beetroot Extract</td><td class="yes">✓</td><td class="no">—</td><td class="no">—</td><td class="no">Partial</td></tr>
+      <tr><td class="tnm">Garlic Extract</td><td class="yes">✓</td><td class="no">—</td><td class="no">—</td><td class="yes">✓</td></tr>
+    </tbody>
+  </table>
+  <div class="dos rv">
+    <div class="dost">CoQ10 — <em>Recommended Dosage</em></div>
+    <div class="dosr"><div class="dosn">100–200</div><div class="dosl">mg per day<br><span style="font-size:12px;color:var(--muted)">Standard therapeutic range for most adults</span></div></div>
+    <div class="dostips">
+      <div class="dtip"><span>🍽️</span>&nbsp;Take with food — CoQ10 is fat-soluble and absorbs significantly better with a meal</div>
+      <div class="dtip"><span>🥑</span>&nbsp;Ideally with healthy fats (avocado, olive oil) for maximum bioavailability</div>
+      <div class="dtip"><span>📅</span>&nbsp;Most people notice improved energy and circulation within 2–4 weeks of consistent daily use</div>
+      <div class="dtip"><span>👨‍⚕️</span>&nbsp;Especially important for those on statins — which deplete natural CoQ10 levels significantly</div>
     </div>
   </div>
+  <h2 class="rv">Lifestyle Habits That <em>Amplify</em> Results</h2>
+  <div class="chk rv">
+    <div class="ci"><div class="cd">🏃</div><strong>Exercise Regularly:</strong>&nbsp;Physical activity stimulates blood flow and strengthens the heart — the most powerful complement to CoQ10</div>
+    <div class="ci"><div class="cd">💧</div><strong>Stay Hydrated:</strong>&nbsp;Water maintains healthy blood volume — dehydration directly impairs vascular function</div>
+    <div class="ci"><div class="cd">🥬</div><strong>Nitrate-Rich Vegetables:</strong>&nbsp;Spinach, arugula, and beets support nitric oxide production — synergistic with CoQ10</div>
+    <div class="ci"><div class="cd">🧘</div><strong>Manage Stress:</strong>&nbsp;Deep breathing and meditation maintain healthy blood pressure — removing a key obstacle to circulation</div>
+  </div>
+  <div class="cta rv">
+    <div class="ceye">Top Recommended Supplement</div>
+    <h3 class="ctit">CoQ10 — <em>Best in Class</em></h3>
+    <p class="cdsc">Support both your heart and your blood vessels with one of the most research-backed supplements for circulation. Dual benefits no other supplement provides.</p>
+    <div class="cfeats"><span class="cfeat">Dual Heart + Vessel Support</span><span class="cfeat">Antioxidant Protection</span><span class="cfeat">Clinically Studied</span><span class="cfeat">100–200mg Daily</span></div>
+    <a href="#" class="cbtn">Check the Best CoQ10 Supplement →</a>
+    <p class="cnote">* Many cardiologists recommend CoQ10 as a natural cardiovascular support tool</p>
+  </div>
+</article>
+<div class="relbar"><div class="relinn"><div class="reltit">Continue Reading</div><div class="relgrid">
+  <a href="#a1" class="relc"><div class="relcat" style="color:var(--red)">Peak Performance · Men's Health</div><div class="relt">The Science of Peak Performance: Restoring Vitality Naturally</div></a>
+  <a href="#a3" class="relc"><div class="relcat" style="color:var(--green)">Natural Energy · Plant-Based</div><div class="relt">Is Moringa the Best Natural Energy Supplement?</div></a>
+</div></div></div>
 </section>
 
-<!-- WHY US -->
-<section id="why" style="background: var(--navy);">
-  <div class="section-head reveal" style="text-align:center; margin: 0 auto 60px;">
-    <div class="section-label" style="text-align:center">لماذا تختار فلاش</div>
-    <h2 class="section-title" style="text-align:center">مزايانا التنافسية</h2>
-    <div class="divider" style="margin: 20px auto;"></div>
-  </div>
-  <div class="features-grid reveal">
-    <div class="feature">
-      <div class="feature-num">01</div>
-      <div class="feature-title">جودة معتمدة</div>
-      <p class="feature-text">جميع منتجاتنا من أفضل المصانع العالمية في أمريكا، إيطاليا، فرنسا، والمملكة المتحدة مع ضمان الجودة الكاملة.</p>
-    </div>
-    <div class="feature">
-      <div class="feature-num">02</div>
-      <div class="feature-title">تنوع استثنائي</div>
-      <p class="feature-text">أكثر من 500 منتج تغطي كل احتياجات مغسلتك من مواد كيميائية، معدات، إكسسوارات، ومزيلات بقع متخصصة.</p>
-    </div>
-    <div class="feature">
-      <div class="feature-num">03</div>
-      <div class="feature-title">خبرة وثقة</div>
-      <p class="feature-text">شركة فلاش للتجارة هي المرجع الأول في قطر لتوريد معدات الغسيل الاحترافي والتنظيف الجاف للمغاسل والفنادق.</p>
-    </div>
-    <div class="feature">
-      <div class="feature-num">04</div>
-      <div class="feature-title">أسعار تنافسية</div>
-      <p class="feature-text">نوفر أفضل الأسعار في السوق القطري مع إمكانية التوريد بالجملة للكميات الكبيرة وعروض خاصة للعملاء الدائمين.</p>
-    </div>
-    <div class="feature">
-      <div class="feature-num">05</div>
-      <div class="feature-title">توصيل سريع</div>
-      <p class="feature-text">نضمن توصيل طلباتك في أسرع وقت ممكن داخل قطر مع إمكانية الاستلام المباشر أو الطلب الإلكتروني.</p>
-    </div>
-    <div class="feature">
-      <div class="feature-num">06</div>
-      <div class="feature-title">دعم متخصص</div>
-      <p class="feature-text">فريقنا المتخصص جاهز لمساعدتك في اختيار المنتج المناسب وتقديم الدعم الفني لمعدات الغسيل والتنظيف.</p>
-    </div>
-  </div>
-</section>
+<!-- SECTION DIVIDER -->
+<div class="sdiv"><div class="sdline"></div><div class="sdlbl">Article 03 — Natural Energy</div><div class="sdline"></div></div>
 
-<!-- CONTACT -->
-<section id="contact" class="contact">
-  <div class="contact-inner reveal">
-    <div class="contact-info">
-      <div class="section-label">تواصل معنا</div>
-      <h2>نحن هنا<br><span style="color:var(--cyan)">لخدمتك</span></h2>
-      <p>تواصل مع فريق شركة فلاش للتجارة للحصول على عروض أسعار، استفسارات عن المنتجات، أو أي دعم تحتاجه.</p>
-      <div class="contact-items">
-        <div class="contact-item">
-          <div class="c-icon">📞</div>
-          <div>
-            <div class="c-label">هاتف</div>
-            <div class="c-value" dir="ltr">+974 6666 7795</div>
-          </div>
-        </div>
-        <div class="contact-item">
-          <div class="c-icon">📧</div>
-          <div>
-            <div class="c-label">البريد الإلكتروني</div>
-            <div class="c-value">info.flashqa@gmail.com</div>
-          </div>
-        </div>
-        <div class="contact-item">
-          <div class="c-icon">🌐</div>
-          <div>
-            <div class="c-label">الموقع الإلكتروني</div>
-            <div class="c-value">flash.com.qa</div>
-          </div>
-        </div>
-        <div class="contact-item">
-          <div class="c-icon">📍</div>
-          <div>
-            <div class="c-label">الموقع</div>
-            <div class="c-value">الدوحة، قطر</div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="contact-form">
-      <div class="form-group">
-        <label>الاسم الكامل</label>
-        <input type="text" placeholder="أدخل اسمك">
-      </div>
-      <div class="form-group">
-        <label>رقم الهاتف</label>
-        <input type="tel" placeholder="+974 XXXX XXXX" dir="ltr">
-      </div>
-      <div class="form-group">
-        <label>نوع الاستفسار</label>
-        <select>
-          <option value="">اختر نوع الطلب</option>
-          <option>طلب عرض سعر</option>
-          <option>استفسار عن منتج</option>
-          <option>طلب جملة</option>
-          <option>دعم فني</option>
-          <option>أخرى</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label>رسالتك</label>
-        <textarea placeholder="اكتب استفسارك أو طلبك هنا..."></textarea>
-      </div>
-      <button class="form-submit" onclick="handleSubmit(this)">إرسال الطلب ⚡</button>
-    </div>
+<!-- ═══ ARTICLE 3 — MORINGA ═══ -->
+<section id="a3" class="art-section">
+<div class="art-hero">
+  <div class="art-hbg"></div><div class="art-hgrid"></div>
+  <div class="art-hc">
+    <div class="art-cat">Natural Energy · Plant-Based Nutrition · 5 min read</div>
+    <h1 class="art-h1">Is <em>Moringa</em> the Best<br>Natural Energy Supplement?</h1>
+    <div class="art-meta"><span class="art-tag">Honest Assessment</span><span class="art-tag">Plant-Based</span><span class="art-tag">Daily Energy Guide</span><span class="art-tag">Global Trend</span></div>
+    <p class="art-lead">"The Miracle Tree has taken the wellness world by storm — but does the science actually back the hype? Here is our honest, evidence-informed verdict."</p>
   </div>
+</div>
+<article class="art-body">
+  <div class="pt rv"><div class="pt-n">01</div><div class="pt-l"></div><div class="pt-s">The Real Problem</div></div>
+  <h2 class="rv">Why You Feel <em>Tired</em> (It's Not Just Sleep)</h2>
+  <p class="rv">Most people assume low energy is only caused by lack of sleep — but that's not the full story. Chronic fatigue has multiple root causes: nutrient deficiencies, high stress levels, poor diet (processed food, sugar), and physical inactivity. These factors create a compounding cycle of imbalance that sleep alone cannot fix.</p>
+  <div class="ba rv">
+    <div class="bac"><div class="bal" style="color:#c86060">❌ Before — Common Experience</div><ul class="balist"><li><span>😴</span>Waking tired despite 7–8 hours of sleep</li><li><span>🌫️</span>Brain fog that persists until mid-morning</li><li><span>📉</span>Low motivation and difficulty focusing</li><li><span>⚡</span>Mid-afternoon crash, reaching for caffeine</li><li><span>💪</span>Reduced physical performance and endurance</li></ul></div>
+    <div class="bac"><div class="bal" style="color:var(--green)">✅ After — With Moringa + Good Habits</div><ul class="balist"><li><span>🌅</span>More balanced, sustained energy all day</li><li><span>🧠</span>Better mental clarity and sharper focus</li><li><span>📈</span>Improved daily performance and motivation</li><li><span>🔄</span>Reduced caffeine dependence and fewer crashes</li><li><span>💪</span>Better physical recovery and endurance</li></ul></div>
+  </div>
+  <div class="pt rv"><div class="pt-n">02</div><div class="pt-l"></div><div class="pt-s">What Is Moringa?</div></div>
+  <h2 class="rv">The <em>"Miracle Tree"</em> — What Science Says</h2>
+  <p class="rv">Moringa, often called the "Miracle Tree," is a plant native to South Asia, used in traditional medicine for thousands of years. Modern nutritional science has confirmed its exceptional density of bioavailable nutrients — making it one of the most nutrient-dense plants on earth.</p>
+  <div class="pills rv">
+    <div class="pill">Vitamin A</div><div class="pill">Vitamin C</div><div class="pill">Vitamin E</div><div class="pill">Iron</div><div class="pill">Calcium</div><div class="pill">Magnesium</div><div class="pill">Quercetin</div><div class="pill">Chlorogenic Acid</div><div class="pill">Plant-Based Protein</div><div class="pill">Potassium</div><div class="pill">B Vitamins</div><div class="pill">Zinc</div>
+  </div>
+  <div class="pull rv"><p>"Unlike caffeine — which gives a short spike followed by a crash — Moringa works differently, supporting the body's energy systems at the cellular level without stimulant dependency."</p></div>
+  <div class="pt rv"><div class="pt-n">03</div><div class="pt-l"></div><div class="pt-s">How It Works</div></div>
+  <h2 class="rv">How Moringa <em>Supports Energy</em></h2>
+  <div class="chk rv">
+    <div class="ci"><div class="cd">1</div><div><strong>Nutrient Support:</strong> Moringa addresses common micronutrient deficiencies — particularly iron and magnesium — that directly impair cellular energy production. Result: stable, long-lasting energy without stimulant dependency.</div></div>
+    <div class="ci"><div class="cd">2</div><div><strong>Antioxidant Protection:</strong> Rich in quercetin and chlorogenic acid, Moringa reduces oxidative stress at the cellular level. Result: less fatigue, better cellular function, improved overall health.</div></div>
+    <div class="ci"><div class="cd">3</div><div><strong>Mental Clarity Support:</strong> B vitamins and magnesium in Moringa support neurological function. Result: improved concentration, focus, and mental stamina throughout the day.</div></div>
+  </div>
+  <div class="pt rv"><div class="pt-n">04</div><div class="pt-l"></div><div class="pt-s">Who Benefits Most</div></div>
+  <h2 class="rv">Who Can Benefit <em>Most?</em></h2>
+  <div class="g2 rv">
+    <div class="g2c"><div class="g2i">😴</div><div class="g2t">Chronically Fatigued</div><p class="g2d">Those experiencing persistent fatigue not fully explained by sleep may have underlying nutrient gaps that Moringa's comprehensive profile can directly address.</p></div>
+    <div class="g2c"><div class="g2i">🥗</div><div class="g2t">Poor Dietary Intake</div><p class="g2d">People who struggle to get sufficient micronutrients from diet — especially those with restricted or rushed eating patterns — may see the most significant improvements.</p></div>
+    <div class="g2c"><div class="g2i">💼</div><div class="g2t">High-Stress Professionals</div><p class="g2d">Sustained stress depletes micronutrients rapidly. Moringa's antioxidant content buffers the physiological effects of chronic workplace stress.</p></div>
+    <div class="g2c"><div class="g2i">🌿</div><div class="g2t">Plant-Based Lifestyle</div><p class="g2d">One of the few plant sources providing a full range of essential nutrients, including bioavailable iron and all essential amino acids — rare in the plant kingdom.</p></div>
+  </div>
+  <h2 class="rv">Global <em>Trending</em> Markets</h2>
+  <p class="rv">Interest in Moringa has surged across Western markets, driven by a broad shift toward natural health solutions and plant-based nutrition:</p>
+  <div class="geo rv"><div class="gpill"><span>🇺🇸</span> United States</div><div class="gpill"><span>🇬🇧</span> United Kingdom</div><div class="gpill"><span>🇨🇦</span> Canada</div><div class="gpill"><span>🇩🇪</span> Germany</div><div class="gpill"><span>🌍</span> Growing Globally</div></div>
+  <div class="pt rv"><div class="pt-n">05</div><div class="pt-l"></div><div class="pt-s">The Honest Verdict</div></div>
+  <div class="verdict rv">
+    <div class="vhead"><div class="vbadge">Our Verdict</div><div class="vtit">Effective — But Not Magic</div></div>
+    <p class="vbody">Moringa is one of the better natural energy options available — but it is not a miracle cure. It supports the body naturally, doesn't overstimulate, and works best combined with good foundational habits. If your lifestyle is already optimized, the effect will be moderate. If you have underlying nutrient gaps, the improvement can be significant. <strong>Bottom line: Moringa is a powerful nutritional foundation, not a performance shortcut.</strong></p>
+    <div class="vstars"><div class="vlbl">Overall Rating</div><div class="stars" style="font-size:20px;color:var(--green)">★★★★☆</div><div style="font-size:13px;color:var(--muted)">4/5 — Excellent natural foundation supplement</div></div>
+  </div>
+  <h2 class="rv">How to Choose a <em>Quality</em> Product</h2>
+  <div class="chk rv">
+    <div class="ci"><div class="cd">✓</div>Pure ingredients — no unnecessary fillers, binders, or artificial additives</div>
+    <div class="ci"><div class="cd">✓</div>Clear labeling — dosage per serving explicitly stated on the label</div>
+    <div class="ci"><div class="cd">✓</div>Trusted sources with third-party testing and transparent ingredient sourcing</div>
+    <div class="ci"><div class="cd">✓</div>Avoid exaggerated claims — Moringa is excellent, but it cannot replace a healthy lifestyle</div>
+  </div>
+  <h2 class="rv" style="margin-bottom:24px">Frequently Asked <em>Questions</em></h2>
+  <div class="faqs rv">
+    <div><div class="fq" onclick="faq(this)">What is the best natural energy supplement? <span class="farr">▼</span></div><div class="fa">There's no single "best" — it depends on your needs. Moringa excels as a nutritional foundation. For circulation-related fatigue, CoQ10 or Nitric Boost Ultra may be more directly effective. The ideal approach combines both a strong nutritional base and targeted circulatory support.</div></div>
+    <div><div class="fq" onclick="faq(this)">Does Moringa give instant energy? <span class="farr">▼</span></div><div class="fa">No. Moringa supports steady, sustained energy over time — not instant stimulation like caffeine. Most people notice meaningful differences after 2–4 weeks of consistent daily use, particularly in mental clarity and afternoon energy levels.</div></div>
+    <div><div class="fq" onclick="faq(this)">Can I use Moringa every day? <span class="farr">▼</span></div><div class="fa">Yes. Moringa is generally considered safe for daily use in moderate amounts. Typical recommendations range from 2–7g per day depending on form (powder, capsule, or extract). Always follow the product's recommended dosage guidelines.</div></div>
+    <div><div class="fq" onclick="faq(this)">Is Moringa safe long-term? <span class="farr">▼</span></div><div class="fa">Moringa is widely considered safe when used as directed. Those with thyroid conditions, taking blood thinners, or who are pregnant should consult a healthcare professional before use. Like any supplement, moderation and professional guidance matter.</div></div>
+  </div>
+  <div class="cta rv">
+    <div class="ceye">Featured Supplement</div>
+    <h3 class="ctit">Moringa — The <em>Miracle Tree</em></h3>
+    <p class="cdsc">A comprehensive plant-based supplement delivering vitamins, minerals, antioxidants, and protein from one of nature's most nutrient-dense sources. The smart foundation for sustained, natural energy.</p>
+    <div class="cfeats"><span class="cfeat">12+ Key Nutrients</span><span class="cfeat">Rich in Antioxidants</span><span class="cfeat">Plant-Based Protein</span><span class="cfeat">No Stimulants</span><span class="cfeat">No Crash</span></div>
+    <a href="#" class="cbtn">Explore Premium Moringa →</a>
+    <p class="cnote">* Results are gradual — best achieved alongside good sleep, diet, and exercise habits</p>
+  </div>
+  <p class="rv" style="margin-top:0"><strong>Final thought:</strong> Moringa is not a miracle solution — but it is a powerful natural supplement when used correctly. Build the right habits first — then use Moringa to enhance your results, not replace the discipline that makes it work.</p>
+</article>
+<div class="relbar"><div class="relinn"><div class="reltit">Continue Reading</div><div class="relgrid">
+  <a href="#a1" class="relc"><div class="relcat" style="color:var(--red)">Peak Performance · Men's Health</div><div class="relt">The Science of Peak Performance: Restoring Vitality Naturally</div></a>
+  <a href="#a2" class="relc"><div class="relcat" style="color:var(--gold)">Blood Flow · Cardiovascular</div><div class="relt">Best Supplements for Blood Flow: Why CoQ10 Leads</div></a>
+</div></div></div>
 </section>
 
 <!-- FOOTER -->
 <footer>
-  <div class="footer-logo">
-    <div class="logo-icon" style="width:36px;height:36px;font-size:18px;">⚡</div>
-    <div class="logo-text">
-      FLASH TRADING
-      <span>شركة فلاش للتجارة</span>
-    </div>
-  </div>
-  <div class="footer-copy">
-    © 2025 <span>Flash Trading Company</span> · شركة فلاش للتجارة · الدوحة، قطر
-  </div>
-  <div class="footer-links">
-    <a href="#products">المنتجات</a>
-    <a href="#machinery">المعدات</a>
-    <a href="#contact">التواصل</a>
-  </div>
+  <div><div class="fb">VitalEdge</div><p class="fd">Science-backed performance intelligence for men who want to operate at their highest level — naturally. Three expert guides on Nitric Oxide, CoQ10, and Moringa.</p></div>
+  <div><div class="fct">Articles</div><div class="flinks"><a href="#a1">Nitric Boost Ultra Guide</a><a href="#a2">CoQ10 &amp; Blood Flow</a><a href="#a3">Moringa Energy Guide</a></div></div>
+  <div><div class="fct">Topics</div><div class="flinks"><a href="#a1">Nitric Oxide Science</a><a href="#a2">Cardiovascular Health</a><a href="#a3">Natural Supplements</a><a href="#a1">Male Performance</a><a href="#a3">Plant-Based Nutrition</a></div></div>
 </footer>
+<div class="fbot">
+  <div class="fcopy">© 2025 VitalEdge. All rights reserved.</div>
+  <div class="fdisc">Disclaimer: All articles are for informational purposes only and do not constitute medical advice. Always consult a qualified healthcare professional before starting any supplement regimen.</div>
+</div>
 
 <script>
-  // Scroll reveal
-  const reveals = document.querySelectorAll('.reveal');
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((e, i) => {
-      if (e.isIntersecting) {
-        setTimeout(() => e.target.classList.add('visible'), i * 60);
-        observer.unobserve(e.target);
-      }
-    });
-  }, { threshold: 0.1 });
-  reveals.forEach(r => observer.observe(r));
+/* Cursor */
+const cur=document.getElementById('cur'),ring=document.getElementById('ring');
+document.addEventListener('mousemove',e=>{cur.style.left=e.clientX-5+'px';cur.style.top=e.clientY-5+'px';ring.style.left=e.clientX-18+'px';ring.style.top=e.clientY-18+'px';});
+document.querySelectorAll('a,button').forEach(el=>{el.addEventListener('mouseenter',()=>cur.style.transform='scale(2.5)');el.addEventListener('mouseleave',()=>cur.style.transform='scale(1)');});
 
-  // Form submit
-  function handleSubmit(btn) {
-    btn.textContent = '✅ تم إرسال طلبك بنجاح!';
-    btn.style.background = 'linear-gradient(135deg, #00c853, #00897b)';
-    btn.disabled = true;
-    setTimeout(() => {
-      btn.textContent = 'إرسال الطلب ⚡';
-      btn.style.background = '';
-      btn.disabled = false;
-    }, 3500);
-  }
+/* Progress bar */
+window.addEventListener('scroll',()=>{const s=document.documentElement.scrollTop,h=document.documentElement.scrollHeight-window.innerHeight;document.getElementById('prog').style.width=(s/h*100)+'%';});
 
-  // Nav active state on scroll
-  window.addEventListener('scroll', () => {
-    const nav = document.querySelector('nav');
-    nav.style.background = window.scrollY > 50
-      ? 'rgba(5,13,26,0.97)'
-      : 'rgba(5,13,26,0.85)';
-  });
+/* Scroll-spy nav */
+const navLinks=document.querySelectorAll('.n-links a');
+const spyObs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){navLinks.forEach(a=>a.classList.remove('active'));const l=document.querySelector(`.n-links a[href="#${e.target.id}"]`);if(l)l.classList.add('active');}});},{threshold:.25});
+['home','a1','a2','a3'].forEach(id=>{const el=document.getElementById(id);if(el)spyObs.observe(el);});
+
+/* Reveal */
+const rvObs=new IntersectionObserver(entries=>{entries.forEach((e,i)=>{if(e.isIntersecting){setTimeout(()=>e.target.classList.add('visible'),i*55);rvObs.unobserve(e.target);}});},{threshold:.08});
+document.querySelectorAll('.rv').forEach(r=>rvObs.observe(r));
+
+/* FAQ */
+function faq(el){const a=el.nextElementSibling,arr=el.querySelector('.farr'),open=a.classList.contains('open');document.querySelectorAll('.fa').forEach(x=>x.classList.remove('open'));document.querySelectorAll('.farr').forEach(x=>x.style.transform='');if(!open){a.classList.add('open');arr.style.transform='rotate(180deg)';}}
+
+/* Cursor color per article */
+const acColors={a1:'#c84e3d',a2:'#c8a96e',a3:'#52a878'};
+document.querySelectorAll('.art-section').forEach(s=>{new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting&&acColors[e.target.id])cur.style.background=acColors[e.target.id];});},{threshold:.2}).observe(s);});
+document.getElementById('home').addEventListener('mousemove',()=>cur.style.background='#c8a96e');
 </script>
 </body>
 </html>
