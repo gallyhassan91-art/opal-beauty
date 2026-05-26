@@ -1,781 +1,400 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ResumeAI — Smart Resume Checker</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
-<!-- Google AdSense -->
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9570579306124251" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.6.0/mammoth.browser.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
-<style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+# Arabic Tools Website — Next.js Starter Blueprint
 
-  :root {
-    --bg: #0a0a0f;
-    --surface: #12121a;
-    --surface2: #1a1a26;
-    --border: rgba(255,255,255,0.08);
-    --accent: #7c6aff;
-    --accent2: #4ecdc4;
-    --text: #f0eeff;
-    --muted: #8884aa;
-    --success: #4ecdc4;
-    --warn: #f9c74f;
-    --danger: #ff6b6b;
-    --font-head: 'Syne', sans-serif;
-    --font-body: 'DM Sans', sans-serif;
-  }
+## 1) Create Project
 
-  body {
-    font-family: var(--font-body);
-    background: var(--bg);
-    color: var(--text);
-    min-height: 100vh;
-    overflow-x: hidden;
-  }
+```bash
+npx create-next-app@latest arabic-tools
+cd arabic-tools
+```
 
-  /* NAV */
-  nav {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 1.2rem 2.5rem;
-    border-bottom: 1px solid var(--border);
-    position: sticky;
-    top: 0;
-    background: rgba(10,10,15,0.9);
-    backdrop-filter: blur(12px);
-    z-index: 100;
-  }
-  .logo {
-    font-family: var(--font-head);
-    font-size: 1.3rem;
-    font-weight: 800;
-    color: var(--text);
-    letter-spacing: -0.5px;
-  }
-  .logo span { color: var(--accent); }
-  nav a {
-    color: var(--muted);
-    text-decoration: none;
-    font-size: 0.875rem;
-    transition: color 0.2s;
-  }
-  nav a:hover { color: var(--text); }
+Choose:
 
-  /* HERO */
-  .hero {
-    max-width: 800px;
-    margin: 0 auto;
-    text-align: center;
-    padding: 5rem 2rem 3rem;
-  }
-  .badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    background: rgba(124,106,255,0.12);
-    border: 1px solid rgba(124,106,255,0.3);
-    color: #a79eff;
-    font-size: 0.75rem;
-    font-weight: 500;
-    padding: 5px 14px;
-    border-radius: 100px;
-    margin-bottom: 1.5rem;
-    letter-spacing: 0.5px;
-    text-transform: uppercase;
-  }
-  .badge::before {
-    content: '';
-    width: 6px; height: 6px;
-    background: var(--accent);
-    border-radius: 50%;
-    animation: pulse 2s infinite;
-  }
-  @keyframes pulse {
-    0%,100% { opacity: 1; }
-    50% { opacity: 0.3; }
-  }
-  h1 {
-    font-family: var(--font-head);
-    font-size: clamp(2.2rem, 5vw, 3.5rem);
-    font-weight: 800;
-    line-height: 1.1;
-    letter-spacing: -1.5px;
-    margin-bottom: 1.2rem;
-  }
-  h1 em {
-    font-style: normal;
-    color: var(--accent);
-  }
-  .sub {
-    font-size: 1.05rem;
-    color: var(--muted);
-    line-height: 1.7;
-    max-width: 520px;
-    margin: 0 auto 2.5rem;
-  }
+* TypeScript = Yes
+* Tailwind = Yes
+* App Router = Yes
+* ESLint = Yes
 
-  /* UPLOAD ZONE */
-  .upload-card {
-    background: var(--surface);
-    border: 2px dashed rgba(124,106,255,0.35);
-    border-radius: 20px;
-    padding: 3rem 2rem;
-    text-align: center;
-    cursor: pointer;
-    transition: all 0.25s;
-    position: relative;
-    max-width: 600px;
-    margin: 0 auto 2rem;
-  }
-  .upload-card:hover, .upload-card.drag-over {
-    border-color: var(--accent);
-    background: rgba(124,106,255,0.06);
-  }
-  .upload-icon {
-    width: 64px; height: 64px;
-    background: rgba(124,106,255,0.1);
-    border-radius: 16px;
-    display: flex; align-items: center; justify-content: center;
-    margin: 0 auto 1.2rem;
-    font-size: 28px;
-  }
-  .upload-card h3 {
-    font-family: var(--font-head);
-    font-size: 1.15rem;
-    font-weight: 700;
-    margin-bottom: 0.5rem;
-  }
-  .upload-card p { color: var(--muted); font-size: 0.875rem; }
-  .upload-card input[type="file"] {
-    position: absolute; inset: 0; opacity: 0; cursor: pointer; width: 100%; height: 100%;
-  }
-  .file-types {
-    display: flex; gap: 8px; justify-content: center; margin-top: 1.2rem;
-  }
-  .tag {
-    background: var(--surface2);
-    border: 1px solid var(--border);
-    border-radius: 6px;
-    padding: 3px 10px;
-    font-size: 0.75rem;
-    color: var(--muted);
-  }
+Install packages:
 
-  /* CHECKS PREVIEW */
-  .checks-row {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    justify-content: center;
-    max-width: 680px;
-    margin: 0 auto 4rem;
-  }
-  .check-pill {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 100px;
-    padding: 7px 16px;
-    font-size: 0.8rem;
-    color: var(--muted);
-    display: flex; align-items: center; gap: 6px;
-  }
-  .check-pill::before {
-    content: '✓';
-    color: var(--accent2);
-    font-weight: 700;
-  }
+```bash
+npm install framer-motion next-sitemap react-icons
+```
 
-  /* RESULTS */
-  #results { display: none; max-width: 780px; margin: 0 auto; padding: 0 2rem 4rem; }
-
-  .score-card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 20px;
-    padding: 2.5rem;
-    margin-bottom: 1.5rem;
-    display: grid;
-    grid-template-columns: auto 1fr;
-    gap: 2rem;
-    align-items: center;
-  }
-  .score-ring {
-    position: relative;
-    width: 130px; height: 130px;
-    flex-shrink: 0;
-  }
-  .score-ring svg { transform: rotate(-90deg); }
-  .score-ring .score-num {
-    position: absolute;
-    inset: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    font-family: var(--font-head);
-    font-size: 2.2rem;
-    font-weight: 800;
-    color: var(--text);
-  }
-  .score-ring .score-num small {
-    font-size: 0.7rem;
-    color: var(--muted);
-    font-weight: 400;
-    font-family: var(--font-body);
-    margin-top: -4px;
-  }
-  .score-info h2 {
-    font-family: var(--font-head);
-    font-size: 1.5rem;
-    font-weight: 700;
-    margin-bottom: 0.5rem;
-  }
-  .score-info p { color: var(--muted); font-size: 0.9rem; line-height: 1.6; }
-  .score-bars {
-    display: flex; flex-direction: column; gap: 10px; margin-top: 1rem;
-  }
-  .bar-item { display: flex; align-items: center; gap: 10px; }
-  .bar-label { font-size: 0.8rem; color: var(--muted); width: 120px; flex-shrink: 0; }
-  .bar-track {
-    flex: 1; height: 6px; background: var(--surface2);
-    border-radius: 100px; overflow: hidden;
-  }
-  .bar-fill {
-    height: 100%; border-radius: 100px;
-    background: linear-gradient(90deg, var(--accent), var(--accent2));
-    transition: width 1s cubic-bezier(0.4,0,0.2,1);
-  }
-  .bar-val { font-size: 0.8rem; font-weight: 500; width: 30px; text-align: right; }
-
-  .checks-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 12px;
-    margin-top: 1.5rem;
-  }
-  @media(max-width:600px){ .checks-grid { grid-template-columns: 1fr; } .score-card { grid-template-columns: 1fr; } }
-
-  .check-item {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 14px;
-    padding: 1rem 1.2rem;
-    display: flex;
-    gap: 12px;
-    align-items: flex-start;
-    transition: border-color 0.2s;
-  }
-  .check-item:hover { border-color: rgba(124,106,255,0.3); }
-  .check-icon {
-    width: 32px; height: 32px; border-radius: 8px;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 15px; flex-shrink: 0;
-  }
-  .check-icon.pass { background: rgba(78,205,196,0.12); color: var(--success); }
-  .check-icon.fail { background: rgba(255,107,107,0.12); color: var(--danger); }
-  .check-icon.warn { background: rgba(249,199,79,0.12); color: var(--warn); }
-  .check-text h4 { font-size: 0.875rem; font-weight: 500; margin-bottom: 3px; }
-  .check-text p { font-size: 0.78rem; color: var(--muted); line-height: 1.5; }
-
-  .section-title {
-    font-family: var(--font-head);
-    font-size: 1.1rem;
-    font-weight: 700;
-    margin: 2rem 0 1rem;
-    display: flex; align-items: center; gap: 8px;
-  }
-  .section-title::after {
-    content: '';
-    flex: 1;
-    height: 1px;
-    background: var(--border);
-  }
-
-  .tips-list {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    overflow: hidden;
-  }
-  .tip-item {
-    padding: 1rem 1.4rem;
-    border-bottom: 1px solid var(--border);
-    display: flex; gap: 12px; align-items: flex-start;
-  }
-  .tip-item:last-child { border-bottom: none; }
-  .tip-num {
-    width: 24px; height: 24px;
-    background: rgba(124,106,255,0.15);
-    color: var(--accent);
-    border-radius: 50%;
-    font-size: 0.72rem;
-    font-weight: 700;
-    display: flex; align-items: center; justify-content: center;
-    flex-shrink: 0; margin-top: 1px;
-  }
-  .tip-item p { font-size: 0.875rem; line-height: 1.6; color: #ccc; }
-  .tip-item strong { color: var(--text); }
-
-  /* LOADING */
-  #loading { display: none; text-align: center; padding: 4rem 2rem; }
-  .spinner {
-    width: 50px; height: 50px;
-    border: 3px solid var(--border);
-    border-top-color: var(--accent);
-    border-radius: 50%;
-    animation: spin 0.8s linear infinite;
-    margin: 0 auto 1.5rem;
-  }
-  @keyframes spin { to { transform: rotate(360deg); } }
-  #loading h3 {
-    font-family: var(--font-head);
-    font-size: 1.2rem;
-    margin-bottom: 0.5rem;
-  }
-  #loading p { color: var(--muted); font-size: 0.875rem; }
-  .loading-steps {
-    display: flex; gap: 8px; justify-content: center;
-    flex-wrap: wrap; margin-top: 1.5rem;
-  }
-  .l-step {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 100px;
-    padding: 5px 14px;
-    font-size: 0.75rem;
-    color: var(--muted);
-    transition: all 0.3s;
-  }
-  .l-step.active {
-    border-color: var(--accent);
-    color: var(--accent);
-    background: rgba(124,106,255,0.08);
-  }
-
-  /* ERROR */
-  #error-msg {
-    display: none;
-    background: rgba(255,107,107,0.08);
-    border: 1px solid rgba(255,107,107,0.3);
-    border-radius: 12px;
-    padding: 1rem 1.5rem;
-    color: var(--danger);
-    font-size: 0.875rem;
-    max-width: 600px;
-    margin: 1rem auto;
-    text-align: center;
-  }
-
-  .btn-retry {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    margin-top: 1.5rem;
-    background: var(--surface);
-    border: 1px solid var(--border);
-    color: var(--text);
-    padding: 10px 22px;
-    border-radius: 10px;
-    font-family: var(--font-body);
-    font-size: 0.875rem;
-    cursor: pointer;
-    transition: all 0.2s;
-  }
-  .btn-retry:hover { border-color: var(--accent); color: var(--accent); }
-
-  /* STATS ROW */
-  .stats-row {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 10px;
-    max-width: 500px;
-    margin: 0 auto 1.5rem;
-  }
-  .stat-box {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 1rem;
-    text-align: center;
-  }
-  .stat-box .num {
-    font-family: var(--font-head);
-    font-size: 1.8rem;
-    font-weight: 800;
-    color: var(--accent);
-  }
-  .stat-box .lbl { font-size: 0.72rem; color: var(--muted); margin-top: 2px; }
-
-  /* ADS */
-  .ad-slot {
-    max-width: 780px;
-    margin: 0 auto 1.5rem;
-    padding: 0 2rem;
-    text-align: center;
-  }
-  .ad-slot-hero {
-    max-width: 780px;
-    margin: 0 auto 2rem;
-    padding: 0 2rem;
-    text-align: center;
-  }
-  .ad-label {
-    font-size: 0.65rem;
-    color: var(--muted);
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    margin-bottom: 4px;
-    opacity: 0.5;
-  }
-</style>
-</head>
-<body>
-
-<nav>
-  <div class="logo">Resume<span>AI</span></div>
-  <a href="#">Free Checker</a>
-</nav>
-
-<div id="upload-section">
-  <div class="hero">
-    <div class="badge">AI-Powered · Free · Instant</div>
-    <h1>Is your resume<br><em>getting you hired?</em></h1>
-    <p class="sub">Upload your resume and get a detailed analysis in seconds. We check 16 criteria including ATS compatibility, content quality, and formatting.</p>
-
-    <div class="stats-row">
-      <div class="stat-box"><div class="num">16</div><div class="lbl">Checks Run</div></div>
-      <div class="stat-box"><div class="num">Free</div><div class="lbl">No Sign-up</div></div>
-      <div class="stat-box"><div class="num">10s</div><div class="lbl">Instant Results</div></div>
-    </div>
-
-    <div class="upload-card" id="drop-zone">
-      <input type="file" id="file-input" accept=".pdf,.docx">
-      <div class="upload-icon">📄</div>
-      <h3>Drop your resume here</h3>
-      <p>or click to browse files</p>
-      <div class="file-types">
-        <span class="tag">PDF</span>
-        <span class="tag">DOCX</span>
-        <span class="tag">Max 5MB</span>
-      </div>
-    </div>
-
-    <div class="checks-row">
-      <div class="check-pill">ATS Compatibility</div>
-      <div class="check-pill">Grammar & Spelling</div>
-      <div class="check-pill">Contact Info</div>
-      <div class="check-pill">Keywords</div>
-      <div class="check-pill">Quantified Achievements</div>
-      <div class="check-pill">Action Verbs</div>
-      <div class="check-pill">Resume Length</div>
-      <div class="check-pill">Formatting</div>
-    </div>
-
-    <!-- Ad Slot 1: Below upload (horizontal banner) -->
-    <div class="ad-slot-hero">
-      <div class="ad-label">Advertisement</div>
-      <ins class="adsbygoogle"
-        style="display:block"
-        data-ad-client="ca-pub-9570579306124251"
-        data-ad-slot="auto"
-        data-ad-format="auto"
-        data-full-width-responsive="true"></ins>
-      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-    </div>
-
-  </div>
-</div>
-
-<div id="loading">
-  <div class="spinner"></div>
-  <h3>Analyzing your resume...</h3>
-  <p>Our AI is running 16 checks on your document</p>
-  <div class="loading-steps">
-    <span class="l-step active" id="ls1">📥 Reading file</span>
-    <span class="l-step" id="ls2">🔍 Parsing content</span>
-    <span class="l-step" id="ls3">🤖 AI analysis</span>
-    <span class="l-step" id="ls4">📊 Building report</span>
-  </div>
-</div>
-
-<div id="error-msg"></div>
-
-<div id="results"></div>
-
-<script>
-pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
-
-const dropZone = document.getElementById('drop-zone');
-const fileInput = document.getElementById('file-input');
-
-dropZone.addEventListener('dragover', e => { e.preventDefault(); dropZone.classList.add('drag-over'); });
-dropZone.addEventListener('dragleave', () => dropZone.classList.remove('drag-over'));
-dropZone.addEventListener('drop', e => {
-  e.preventDefault();
-  dropZone.classList.remove('drag-over');
-  const file = e.dataTransfer.files[0];
-  if (file) processFile(file);
-});
-fileInput.addEventListener('change', () => {
-  if (fileInput.files[0]) processFile(fileInput.files[0]);
-});
-
-async function processFile(file) {
-  const allowed = ['application/pdf', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'];
-  if (!allowed.includes(file.type) && !file.name.match(/\.(pdf|docx)$/i)) {
-    showError('Please upload a PDF or DOCX file.');
-    return;
-  }
-  if (file.size > 5 * 1024 * 1024) {
-    showError('File size must be under 5MB.');
-    return;
-  }
-
-  document.getElementById('upload-section').style.display = 'none';
-  document.getElementById('loading').style.display = 'block';
-  document.getElementById('error-msg').style.display = 'none';
-  document.getElementById('results').style.display = 'none';
-
-  await animateSteps();
-
-  try {
-    let text = '';
-    if (file.type === 'application/pdf' || file.name.endsWith('.pdf')) {
-      text = await extractPDF(file);
-    } else {
-      text = await extractDOCX(file);
-    }
-
-    if (!text || text.trim().length < 50) {
-      throw new Error('Could not extract text from this file. Please try a different format.');
-    }
-
-    const result = await analyzeWithClaude(text, file.name);
-    document.getElementById('loading').style.display = 'none';
-    renderResults(result, file.name);
-  } catch(err) {
-    document.getElementById('loading').style.display = 'none';
-    document.getElementById('upload-section').style.display = 'block';
-    showError(err.message || 'Something went wrong. Please try again.');
-  }
-}
-
-async function animateSteps() {
-  const steps = ['ls1','ls2','ls3','ls4'];
-  for (let i = 0; i < steps.length; i++) {
-    await new Promise(r => setTimeout(r, 600));
-    if (i > 0) document.getElementById(steps[i-1]).classList.remove('active');
-    document.getElementById(steps[i]).classList.add('active');
-  }
-}
-
-async function extractPDF(file) {
-  const buf = await file.arrayBuffer();
-  const pdf = await pdfjsLib.getDocument({ data: buf }).promise;
-  let text = '';
-  for (let i = 1; i <= pdf.numPages; i++) {
-    const page = await pdf.getPage(i);
-    const content = await page.getTextContent();
-    text += content.items.map(s => s.str).join(' ') + '\n';
-  }
-  return text;
-}
-
-async function extractDOCX(file) {
-  const buf = await file.arrayBuffer();
-  const result = await mammoth.extractRawText({ arrayBuffer: buf });
-  return result.value;
-}
-
-async function analyzeWithClaude(resumeText, filename) {
-  const prompt = `You are an expert resume coach and ATS specialist. Analyze the following resume text and return ONLY a JSON object (no markdown, no extra text).
-
-Resume text:
----
-${resumeText.slice(0, 3000)}
 ---
 
-Return this exact JSON structure:
-{
-  "score": <number 0-100>,
-  "grade": "<A+|A|B+|B|C+|C|D>",
-  "headline": "<one short encouraging sentence about the resume>",
-  "summary": "<2-3 sentences overall assessment>",
-  "categories": {
-    "ats": <0-100>,
-    "content": <0-100>,
-    "formatting": <0-100>,
-    "impact": <0-100>
+# 2) Folder Structure
+
+```txt
+app/
+ ├── layout.tsx
+ ├── page.tsx
+ ├── sitemap.ts
+ ├── robots.ts
+ ├── about/page.tsx
+ ├── contact/page.tsx
+ ├── privacy-policy/page.tsx
+ ├── terms/page.tsx
+ ├── tools/
+ │    ├── jpg-to-png/page.tsx
+ │    ├── png-to-webp/page.tsx
+ │    └── compress-image/page.tsx
+components/
+ ├── Header.tsx
+ ├── Footer.tsx
+ ├── ToolCard.tsx
+ └── FAQ.tsx
+```
+
+---
+
+# 3) app/layout.tsx
+
+```tsx
+import './globals.css'
+import type { Metadata } from 'next'
+import Header from '@/components/Header'
+import Footer from '@/components/Footer'
+
+export const metadata: Metadata = {
+  metadataBase: new URL('https://yourdomain.com'),
+  title: {
+    default: 'Arabic File Tools',
+    template: '%s | Arabic File Tools'
   },
-  "checks": [
-    {"id":"contact","label":"Contact Information","status":"pass|fail|warn","detail":"<brief note>"},
-    {"id":"summary","label":"Professional Summary","status":"pass|fail|warn","detail":"<brief note>"},
-    {"id":"experience","label":"Work Experience","status":"pass|fail|warn","detail":"<brief note>"},
-    {"id":"achievements","label":"Quantified Achievements","status":"pass|fail|warn","detail":"<brief note>"},
-    {"id":"keywords","label":"Industry Keywords","status":"pass|fail|warn","detail":"<brief note>"},
-    {"id":"action_verbs","label":"Action Verbs","status":"pass|fail|warn","detail":"<brief note>"},
-    {"id":"skills","label":"Skills Section","status":"pass|fail|warn","detail":"<brief note>"},
-    {"id":"education","label":"Education Section","status":"pass|fail|warn","detail":"<brief note>"},
-    {"id":"length","label":"Resume Length","status":"pass|fail|warn","detail":"<brief note>"},
-    {"id":"formatting","label":"Clean Formatting","status":"pass|fail|warn","detail":"<brief note>"},
-    {"id":"grammar","label":"Grammar & Spelling","status":"pass|fail|warn","detail":"<brief note>"},
-    {"id":"clichés","label":"No Clichés/Buzzwords","status":"pass|fail|warn","detail":"<brief note>"}
+  description:
+    'Free Arabic image and file tools for converting and compressing files online.',
+  keywords: [
+    'JPG to PNG',
+    'Compress Image',
+    'Arabic Tools',
+    'Image Converter'
   ],
-  "tips": [
-    "<specific actionable tip 1>",
-    "<specific actionable tip 2>",
-    "<specific actionable tip 3>",
-    "<specific actionable tip 4>",
-    "<specific actionable tip 5>"
-  ]
-}`;
-
-  const resp = await fetch('https://api.anthropic.com/v1/messages', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      model: 'claude-sonnet-4-20250514',
-      max_tokens: 1500,
-      messages: [{ role: 'user', content: prompt }]
-    })
-  });
-
-  if (!resp.ok) {
-    const err = await resp.json().catch(() => ({}));
-    throw new Error(err.error?.message || 'API request failed. Check your connection.');
+  openGraph: {
+    title: 'Arabic File Tools',
+    description: 'Free online file tools.',
+    url: 'https://yourdomain.com',
+    siteName: 'Arabic File Tools',
+    locale: 'ar_AR',
+    type: 'website'
+  },
+  robots: {
+    index: true,
+    follow: true
   }
-
-  const data = await resp.json();
-  const raw = data.content[0].text.replace(/```json|```/g, '').trim();
-  return JSON.parse(raw);
 }
 
-function renderResults(data, filename) {
-  const score = Math.round(data.score);
-  const color = score >= 75 ? '#4ecdc4' : score >= 50 ? '#f9c74f' : '#ff6b6b';
-  const r = 54, circ = 2 * Math.PI * r;
-  const dash = (score / 100) * circ;
+export default function RootLayout({
+  children
+}: {
+  children: React.ReactNode
+}) {
+  return (
+    <html lang="ar" dir="rtl">
+      <body className="bg-black text-white min-h-screen">
+        <Header />
+        <main>{children}</main>
+        <Footer />
+      </body>
+    </html>
+  )
+}
+```
 
-  const passCount = data.checks.filter(c => c.status === 'pass').length;
-  const failCount = data.checks.filter(c => c.status === 'fail').length;
-  const warnCount = data.checks.filter(c => c.status === 'warn').length;
+---
 
-  const statusIcon = s => s === 'pass' ? '✓' : s === 'fail' ? '✕' : '!';
+# 4) app/page.tsx
 
-  const checksHTML = data.checks.map(c => `
-    <div class="check-item">
-      <div class="check-icon ${c.status}">${statusIcon(c.status)}</div>
-      <div class="check-text">
-        <h4>${c.label}</h4>
-        <p>${c.detail}</p>
+```tsx
+import ToolCard from '@/components/ToolCard'
+
+const tools = [
+  {
+    title: 'JPG to PNG',
+    desc: 'Convert JPG images to PNG online.',
+    href: '/tools/jpg-to-png'
+  },
+  {
+    title: 'PNG to WEBP',
+    desc: 'Convert PNG images to WEBP format.',
+    href: '/tools/png-to-webp'
+  },
+  {
+    title: 'Compress Image',
+    desc: 'Compress images without losing quality.',
+    href: '/tools/compress-image'
+  }
+]
+
+export default function Home() {
+  return (
+    <section className="max-w-6xl mx-auto px-6 py-20">
+      <h1 className="text-5xl font-bold text-center mb-6">
+        Arabic File & Image Tools
+      </h1>
+
+      <p className="text-center text-gray-400 max-w-2xl mx-auto mb-16">
+        Free fast online tools for image conversion and optimization.
+      </p>
+
+      <div className="grid md:grid-cols-3 gap-6">
+        {tools.map((tool) => (
+          <ToolCard key={tool.title} {...tool} />
+        ))}
       </div>
-    </div>
-  `).join('');
+    </section>
+  )
+}
+```
 
-  const tipsHTML = data.tips.map((t, i) => `
-    <div class="tip-item">
-      <div class="tip-num">${i+1}</div>
-      <p>${t}</p>
-    </div>
-  `).join('');
+---
 
-  const barsHTML = [
-    { label: 'ATS Compatibility', val: data.categories.ats },
-    { label: 'Content Quality', val: data.categories.content },
-    { label: 'Formatting', val: data.categories.formatting },
-    { label: 'Impact & Results', val: data.categories.impact },
-  ].map(b => `
-    <div class="bar-item">
-      <span class="bar-label">${b.label}</span>
-      <div class="bar-track"><div class="bar-fill" style="width:${b.val}%"></div></div>
-      <span class="bar-val">${Math.round(b.val)}</span>
-    </div>
-  `).join('');
+# 5) components/Header.tsx
 
-  const html = `
-    <div style="text-align:center;margin-bottom:2rem;padding:0 2rem;">
-      <p style="color:var(--muted);font-size:0.8rem;margin-bottom:0.5rem;">📄 ${filename}</p>
-      <h2 style="font-family:var(--font-head);font-size:1.6rem;font-weight:800;">${data.headline}</h2>
-    </div>
+```tsx
+import Link from 'next/link'
 
-    <div class="score-card">
-      <div class="score-ring">
-        <svg width="130" height="130" viewBox="0 0 130 130">
-          <circle cx="65" cy="65" r="${r}" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="10"/>
-          <circle cx="65" cy="65" r="${r}" fill="none" stroke="${color}" stroke-width="10"
-            stroke-linecap="round"
-            stroke-dasharray="${dash} ${circ}"
-            style="transition:stroke-dasharray 1.2s cubic-bezier(0.4,0,0.2,1)"/>
-        </svg>
-        <div class="score-num">${score}<small>/ 100</small></div>
+export default function Header() {
+  return (
+    <header className="border-b border-white/10">
+      <div className="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+        <Link href="/" className="font-bold text-2xl">
+          AFT
+        </Link>
+
+        <nav className="flex gap-6 text-sm text-gray-300">
+          <Link href="/about">About</Link>
+          <Link href="/contact">Contact</Link>
+          <Link href="/privacy-policy">Privacy</Link>
+        </nav>
       </div>
-      <div class="score-info">
-        <h2>Grade: ${data.grade}</h2>
-        <p>${data.summary}</p>
-        <div style="display:flex;gap:16px;margin-top:1rem;flex-wrap:wrap;">
-          <span style="font-size:0.8rem;color:var(--success);">✓ ${passCount} passed</span>
-          <span style="font-size:0.8rem;color:var(--warn);">! ${warnCount} warnings</span>
-          <span style="font-size:0.8rem;color:var(--danger);">✕ ${failCount} failed</span>
+    </header>
+  )
+}
+```
+
+---
+
+# 6) components/Footer.tsx
+
+```tsx
+export default function Footer() {
+  return (
+    <footer className="border-t border-white/10 mt-20">
+      <div className="max-w-6xl mx-auto px-6 py-10 text-center text-gray-400 text-sm">
+        © 2026 Arabic File Tools. All rights reserved.
+      </div>
+    </footer>
+  )
+}
+```
+
+---
+
+# 7) components/ToolCard.tsx
+
+```tsx
+import Link from 'next/link'
+
+export default function ToolCard({
+  title,
+  desc,
+  href
+}: {
+  title: string
+  desc: string
+  href: string
+}) {
+  return (
+    <Link
+      href={href}
+      className="bg-white/5 border border-white/10 rounded-2xl p-6 hover:bg-white/10 transition"
+    >
+      <h2 className="text-2xl font-bold mb-3">{title}</h2>
+      <p className="text-gray-400">{desc}</p>
+    </Link>
+  )
+}
+```
+
+---
+
+# 8) Example Tool Page
+
+## app/tools/jpg-to-png/page.tsx
+
+```tsx
+export const metadata = {
+  title: 'JPG to PNG Converter',
+  description: 'Convert JPG images to PNG online for free.'
+}
+
+export default function JPGtoPNG() {
+  return (
+    <section className="max-w-4xl mx-auto px-6 py-20">
+      <h1 className="text-4xl font-bold mb-6">JPG to PNG Converter</h1>
+
+      <p className="text-gray-400 mb-10">
+        Upload your JPG image and convert it instantly.
+      </p>
+
+      <div className="border-2 border-dashed border-white/20 rounded-2xl p-20 text-center">
+        Upload Area
+      </div>
+
+      <div className="mt-16 space-y-6">
+        <h2 className="text-2xl font-bold">FAQ</h2>
+
+        <div>
+          <h3 className="font-semibold">How do I convert JPG to PNG?</h3>
+          <p className="text-gray-400">
+            Upload your image and download the PNG version instantly.
+          </p>
         </div>
-        <div class="score-bars" style="margin-top:1.2rem;">${barsHTML}</div>
       </div>
-    </div>
-
-    <div class="section-title">Detailed Checks</div>
-    <div class="checks-grid">${checksHTML}</div>
-
-    <!-- Ad Slot 2: Between checks and tips (rectangle) -->
-    <div class="ad-slot" style="margin:2rem auto;">
-      <div class="ad-label">Advertisement</div>
-      <ins class="adsbygoogle"
-        style="display:block"
-        data-ad-client="ca-pub-9570579306124251"
-        data-ad-slot="auto"
-        data-ad-format="auto"
-        data-full-width-responsive="true"></ins>
-    </div>
-
-    <div class="section-title">Top Improvements</div>
-    <div class="tips-list">${tipsHTML}</div>
-
-    <!-- Ad Slot 3: Below tips (leaderboard) -->
-    <div class="ad-slot" style="margin:2rem auto;">
-      <div class="ad-label">Advertisement</div>
-      <ins class="adsbygoogle"
-        style="display:block"
-        data-ad-client="ca-pub-9570579306124251"
-        data-ad-slot="auto"
-        data-ad-format="auto"
-        data-full-width-responsive="true"></ins>
-    </div>
-
-    <div style="text-align:center;margin-top:1.5rem;">
-      <button class="btn-retry" onclick="location.reload()">← Check Another Resume</button>
-    </div>
-  `;
-
-  const el = document.getElementById('results');
-  el.innerHTML = html;
-  el.style.display = 'block';
-  el.scrollIntoView({ behavior: 'smooth' });
-  // Initialize ads inserted dynamically
-  try {
-    el.querySelectorAll('.adsbygoogle').forEach(() => {
-      (adsbygoogle = window.adsbygoogle || []).push({});
-    });
-  } catch(e) {}
+    </section>
+  )
 }
+```
 
-function showError(msg) {
-  const el = document.getElementById('error-msg');
-  el.innerHTML = `⚠️ ${msg}`;
-  el.style.display = 'block';
+---
+
+# 9) SEO Sitemap
+
+## app/sitemap.ts
+
+```ts
+import { MetadataRoute } from 'next'
+
+export default function sitemap(): MetadataRoute.Sitemap {
+  return [
+    {
+      url: 'https://yourdomain.com',
+      lastModified: new Date()
+    },
+    {
+      url: 'https://yourdomain.com/tools/jpg-to-png',
+      lastModified: new Date()
+    },
+    {
+      url: 'https://yourdomain.com/tools/png-to-webp',
+      lastModified: new Date()
+    }
+  ]
 }
-</script>
-</body>
-</html>
+```
+
+---
+
+# 10) robots.ts
+
+```ts
+import { MetadataRoute } from 'next'
+
+export default function robots(): MetadataRoute.Robots {
+  return {
+    rules: {
+      userAgent: '*',
+      allow: '/'
+    },
+    sitemap: 'https://yourdomain.com/sitemap.xml'
+  }
+}
+```
+
+---
+
+# 11) About Page
+
+## app/about/page.tsx
+
+```tsx
+export default function AboutPage() {
+  return (
+    <section className="max-w-4xl mx-auto px-6 py-20">
+      <h1 className="text-4xl font-bold mb-6">About Us</h1>
+
+      <p className="text-gray-300 leading-8">
+        Arabic File Tools provides fast free online image and file utilities.
+      </p>
+    </section>
+  )
+}
+```
+
+---
+
+# 12) Privacy Policy
+
+## app/privacy-policy/page.tsx
+
+```tsx
+export default function PrivacyPolicy() {
+  return (
+    <section className="max-w-4xl mx-auto px-6 py-20">
+      <h1 className="text-4xl font-bold mb-6">Privacy Policy</h1>
+
+      <p className="text-gray-300 leading-8">
+        We respect your privacy and do not permanently store uploaded files.
+      </p>
+    </section>
+  )
+}
+```
+
+---
+
+# 13) Deploy to GitHub
+
+```bash
+git init
+git add .
+git commit -m "Initial commit"
+```
+
+Create repository on GitHub then:
+
+```bash
+git remote add origin https://github.com/USERNAME/REPO.git
+git push -u origin main
+```
+
+---
+
+# 14) Deploy to Vercel
+
+1. Open Vercel
+2. Import GitHub repository
+3. Deploy
+
+---
+
+# 15) Connect Google Search Console
+
+After deployment:
+
+* Add property
+* Submit sitemap:
+
+```txt
+https://yourdomain.com/sitemap.xml
+```
+
+---
+
+# 16) Adsense Tips
+
+Before applying:
+
+* Add at least 20 pages
+* Add blog articles
+* Add real content
+* Improve loading speed
+* Use custom domain
+* Avoid copied content
+* Add contact email
+
+---
+
+# 17) Best Next Step
+
+After launch:
